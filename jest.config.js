@@ -9,5 +9,6 @@ module.exports = {
     '<rootDir>/libs/api-pessoas',
     '<rootDir>/libs/shared/interfaces',
     '<rootDir>/libs/api-shared',
+    '<rootDir>/libs/pages',
   ],
 };

@@ -56,6 +56,9 @@
     },
     "api-shared": {
       "tags": ["scope:shared", "type:shared"]
+    },
+    "pages": {
+      "tags": ["scope:pages", "type:pages"]
     }
   }
 }
