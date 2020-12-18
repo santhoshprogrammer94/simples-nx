@@ -4,8 +4,31 @@
     "outDir": "../../dist/out-tsc",
     "types": ["node"],
     "emitDecoratorMetadata": true,
-    "target": "es2015"
+    "experimentalDecorators": true,
+        // "target": "es2015",
+
+    "module": "commonjs", // <-- here
+    "target": "es2017", // <-- here
+    "declaration": true,
+    "removeComments": true,
+    "resolveJsonModule": true ,
+
   },
   "exclude": ["**/*.spec.ts"],
   "include": ["**/*.ts"]
 }
+
+
+/*
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "resolveJsonModule": true // here is the important line, this will help VSCode to autocomplete and suggest quick-fixes
+*/

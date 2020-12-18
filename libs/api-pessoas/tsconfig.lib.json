@@ -1,11 +1,14 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
+    // "module": "commonjs",
     "outDir": "../../dist/out-tsc",
     "declaration": true,
     "types": ["node"],
-    "target": "es6"
+    // "target": "es6",
+    "module": "commonjs", // <-- here
+    "target": "es2017", // <-- here,
+    "showCircularDependencies": false
   },
   "exclude": ["**/*.spec.ts"],
   "include": ["**/*.ts"]

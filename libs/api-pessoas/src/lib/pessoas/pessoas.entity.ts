@@ -1,5 +1,5 @@
 import { BaseMysqlEntity } from '@simples/api-shared';
-import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ApiProperty, OneToOne } from 'typeorm';
 
 import { UsuariosEntity } from '../usuarios/usuarios.entity';
 
@@ -32,9 +32,9 @@ export class PessoasEntity extends BaseMysqlEntity {
   // @JoinColumn({ name: 'fk_pessoa_usuario' })
   // usuario: UsuariosEntity;
 
-  // @OneToOne(() => UsuariosEntity, (usuario) => usuario.id) // specify inverse side as a second parameter
-  // @JoinColumn()
-  // usuario: UsuariosEntity;
+  @OneToOne(() => UsuariosEntity, (usuario) => usuario.id, { nullable: true }) // specify inverse side as a second parameter
+  @JoinColumn({ name: 'usuario_id' })
+  usuario: UsuariosEntity;
 }
 
 // @Entity('testes')

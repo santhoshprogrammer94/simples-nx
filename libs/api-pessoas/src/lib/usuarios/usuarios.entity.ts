@@ -18,7 +18,7 @@ export class UsuariosEntity extends BaseMysqlEntity {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'pessoa_id' })
-  person: PessoasEntity;
+  pessoa: PessoasEntity;
 
   @Column({
     type: 'varchar',
