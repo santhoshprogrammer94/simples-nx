@@ -35,6 +35,27 @@
     },
     "simples-api": {
       "tags": []
+    },
+    "styles": {
+      "tags": ["scope:styles type:styles"]
+    },
+    "api-core": {
+      "tags": []
+    },
+    "api-database": {
+      "tags": []
+    },
+    "api-cruds": {
+      "tags": []
+    },
+    "api-pessoas": {
+      "tags": []
+    },
+    "shared-interfaces": {
+      "tags": ["scope:shared", "type:interfaces"]
+    },
+    "api-shared": {
+      "tags": ["scope:shared", "type:shared"]
     }
   }
 }

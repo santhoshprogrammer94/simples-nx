@@ -12,9 +12,19 @@
     "module": "esnext",
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
+    "typeRoots": ["node_modules/@types"],
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@api-core": ["libs/api-core/src/index.ts"],
+      "@simples/api-core": ["libs/api-core/src/index.ts"],
+      "@simples/api-database": ["libs/api-database/src/index.ts"],
+      "@simples/api-cruds": ["libs/api-cruds/src/index.ts"],
+      "@simples/api-pessoas": ["libs/api-pessoas/src/index.ts"],
+      "@simples/shared/interfaces": ["libs/shared/interfaces/src/index.ts"],
+      "@simples/api-shared": ["libs/api-shared/src/index.ts"]
+    }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "include": ["**/*.ts", "./libs/*/src/**/*", "./apps/*/src/**/*"]
 }
