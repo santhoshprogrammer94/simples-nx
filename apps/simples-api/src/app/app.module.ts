@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CargosModule, TestesModule } from '@simples/api-cruds';
 import { ApiDatabaseModule } from '@simples/api-database';
+import { PessoasModule, UsuariosModule } from '@simples/api-pessoas';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -22,7 +23,8 @@ import { DatabaseConfig } from './database.config';
     }),
 
     ApiDatabaseModule,
-
+    PessoasModule,
+    UsuariosModule,
     CargosModule,
     TestesModule,
   ],
