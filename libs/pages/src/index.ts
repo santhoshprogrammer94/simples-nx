@@ -1,1 +1,1 @@
-export * from './lib/pages.module';
+export * from './lib/nx/nx.module';
