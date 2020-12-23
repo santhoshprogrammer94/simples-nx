@@ -10,5 +10,6 @@ module.exports = {
     '<rootDir>/libs/shared/interfaces',
     '<rootDir>/libs/api-shared',
     '<rootDir>/libs/pages',
+    '<rootDir>/libs/app-shared',
   ],
 };

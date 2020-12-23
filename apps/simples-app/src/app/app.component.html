@@ -1,11 +1,27 @@
-<h1>Angular Router App</h1>
-<!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
-<nav>
-  <ul>
-    <li><a routerLink="/first-component" routerLinkActive="active">First Component</a></li>
-    <li><a routerLink="/second-component" routerLinkActive="active">Second Component</a></li>
-    <li><a routerLink="/nx" routerLinkActive="active">nx Component</a></li>
-  </ul>
-</nav>
-<!-- The routed views render in the <router-outlet>-->
-<router-outlet></router-outlet>
+<mat-sidenav-container fullscreen>
+
+  <mat-sidenav #sidenav role="navigation" mode="push">
+    <simples-sidenav (sideNavClosed)="sidenav.close()"></simples-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content fxLayout="column">
+
+    <div class="header">
+      <simples-header-mobile>
+      </simples-header-mobile>
+    </div>
+
+    <main class="container mat-app-background">
+      <router-outlet></router-outlet>
+    </main>
+
+    <div class="footer">
+      <simples-footer-mobile (sidenavToggle)="sidenav.toggle()">
+      </simples-footer-mobile>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+

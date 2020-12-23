@@ -59,6 +59,9 @@
     },
     "pages": {
       "tags": ["scope:pages", "type:pages"]
+    },
+    "app-shared": {
+      "tags": []
     }
   }
 }

@@ -379,6 +379,37 @@
           }
         }
       }
+    },
+    "app-shared": {
+      "projectType": "library",
+      "root": "libs/app-shared",
+      "sourceRoot": "libs/app-shared/src",
+      "prefix": "simples",
+      "targets": {
+        "lint": {
+          "executor": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/app-shared/tsconfig.lib.json",
+              "libs/app-shared/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/app-shared/**/*"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/app-shared"
+          ],
+          "options": {
+            "jestConfig": "libs/app-shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
