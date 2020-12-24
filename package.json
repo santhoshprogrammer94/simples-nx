@@ -67,6 +67,7 @@
     "joi": "^17.2.1",
     "mysql": "^2.18.1",
     "nestjs-config": "^1.4.7",
+    "ng-material-multilevel-menu": "^5.5.3",
     "reflect-metadata": "^0.1.13",
     "request-context": "^2.0.0",
     "rxjs": "~6.5.5",

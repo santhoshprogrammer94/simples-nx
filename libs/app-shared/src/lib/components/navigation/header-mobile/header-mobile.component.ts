@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,12 +13,19 @@ export class HeaderMobileComponent implements OnInit {
   showBackArrow = true;
 
   opened = true;
+  @Output() sideNavClosed = new EventEmitter();
 
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
+
+
+  onMenuClick() {
+    this.sideNavClosed.emit();
+  }
+
 
   onChangeProfileImage() {
     this.router.navigateByUrl('/profile/personal');

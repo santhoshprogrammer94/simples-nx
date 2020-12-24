@@ -31,6 +31,7 @@ import { ContainerComponent } from './components/container/container.component';
     AppRoutingModule,
     MaterialModule,
     AppSharedModule,
+
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],

@@ -1,9 +1,3 @@
-<p>coloquei coisas aqui</p>
-
-<div fxHide fxShow.gt-sm>Maior que smartphone</div>
-
-<div fxShow fxHide.md >Outros tamanhos</div>
-
 
 
 <mat-card class="card-demo">
@@ -13,6 +7,16 @@
   </mat-card-subtitle>
   <mat-card-content>
     <div class="containerX">
+
+
+      <p *ngFor="let item of fakeArray(20);">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+        type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+        essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+        passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </p>
+
       <div class="coloredContainerX box fixed"
            [fxLayout]="direction"
            (click)="pivot()">
@@ -24,6 +28,14 @@
         <div fxShow fxHide.md class="box2"> Type 2, row b, fxShow fxHide.md</div>
         <div fxShow fxHide.md class="box3"> Type 2, row c, fxShow fxHide.md</div>
       </div>
+
+      <p>coloquei coisas aqui</p>
+
+      <div fxHide fxShow.gt-sm>Maior que smartphone</div>
+
+      <div fxShow fxHide.md >Outros tamanhos</div>
+
+
     </div>
   </mat-card-content>
   <mat-card-footer style="width:95%;padding-left:20px;margin-top:-5px;">
@@ -31,11 +43,3 @@
   </mat-card-footer>
 </mat-card>
 
-
-<p *ngFor="let item of fakeArray(20);">
-  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-  standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
-  type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
-  essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-  passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-</p>
