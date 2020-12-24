@@ -1,7 +1,13 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Store } from '@ngrx/store';
+import { NavigationFacade } from '@simples/app-store';
+import { interval, Observable } from 'rxjs';
+import { delayWhen } from 'rxjs/operators';
 
+// import * as fromIssue from './store/issue/issue.selectors';
+// import { reset } from './store/meta-reducers';
 @Component({
   selector: 'simples-root',
   templateUrl: './app.component.html',
@@ -70,8 +76,20 @@ export class AppComponent {
   // showSubmenu: boolean = false;
   isShowing = false;
   // showSubSubMenu: boolean = false;
+  navigationLoading$: Observable<boolean>;
+  constructor(
+    private store: Store,
+    private navFacade: NavigationFacade,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher
+  ) {
+    // this.stats$ = this.store.select(fromIssue.selectStats);
+    // this.navigationLoading$ = this.navFacade.selectLoading$;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    this.navigationLoading$ = this.navigationLoading$ = this.navFacade.selectLoading$.pipe(
+      delayWhen((loading) => interval(loading ? 0 : 800))
+    );
+
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

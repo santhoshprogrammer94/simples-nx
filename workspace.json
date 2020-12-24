@@ -24,6 +24,16 @@
               "apps/simples-app/src/styles.scss",
               "libs/styles/src/index.scss"
             ],
+
+
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/styles/src/",
+                "libs/styles/src/lib/",
+                "libs/styles/src/lib/"
+              ]
+            },
+            "extractCss": true,
             "scripts": []
           },
           "configurations": {
@@ -406,6 +416,37 @@
           ],
           "options": {
             "jestConfig": "libs/app-shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app-store": {
+      "projectType": "library",
+      "root": "libs/app-store",
+      "sourceRoot": "libs/app-store/src",
+      "prefix": "simples",
+      "targets": {
+        "lint": {
+          "executor": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/app-store/tsconfig.lib.json",
+              "libs/app-store/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/app-store/**/*"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/app-store"
+          ],
+          "options": {
+            "jestConfig": "libs/app-store/jest.config.js",
             "passWithNoTests": true
           }
         }

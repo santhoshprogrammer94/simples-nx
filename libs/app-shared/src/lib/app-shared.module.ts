@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { NgMaterialMultilevelMenuModule, ɵb, MultilevelMenuService } from 'ng-material-multilevel-menu';
+import { MultilevelMenuService, NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
 
+import { LoaderComponent } from './components/loader/loader.component';
 import { MediaQueryStatusComponent } from './components/media-query-status/media-query-status.component';
 import { FooterMobileComponent } from './components/navigation/footer-mobile/footer-mobile.component';
 import { HeaderMobileComponent } from './components/navigation/header-mobile/header-mobile.component';
@@ -21,15 +22,16 @@ import { MaterialModule } from './material.module';
     HeaderMobileComponent,
     SidenavComponent,
     MediaQueryStatusComponent,
+    LoaderComponent,
   ],
   exports: [
     FooterMobileComponent,
     HeaderMobileComponent,
     SidenavComponent,
     MediaQueryStatusComponent,
+    LoaderComponent,
   ],
 
   providers: [MultilevelMenuService],
-
 })
 export class AppSharedModule {}

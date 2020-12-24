@@ -16,6 +16,8 @@ import { ContainerComponent } from './components/container/container.component';
 // import { SidenavComponent } from './navigation/sidenav/sidenav.component';
 
 // import { AppSharedModule, MaterialModule } from '@simples/app-shared';
+
+import { AppStoreModule } from "@simples/app-store";
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +33,7 @@ import { ContainerComponent } from './components/container/container.component';
     AppRoutingModule,
     MaterialModule,
     AppSharedModule,
+    AppStoreModule
 
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],

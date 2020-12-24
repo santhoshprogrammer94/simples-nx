@@ -11,5 +11,6 @@ module.exports = {
     '<rootDir>/libs/api-shared',
     '<rootDir>/libs/pages',
     '<rootDir>/libs/app-shared',
+    '<rootDir>/libs/app-store',
   ],
 };

@@ -23,7 +23,8 @@
       "@simples/shared/interfaces": ["libs/shared/interfaces/src/index.ts"],
       "@simples/api-shared": ["libs/api-shared/src/index.ts"],
       "@simples/pages": ["libs/pages/src/index.ts"],
-      "@simples/app-shared": ["libs/app-shared/src/index.ts"]
+      "@simples/app-shared": ["libs/app-shared/src/index.ts"],
+      "@simples/app-store": ["libs/app-store/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"],
