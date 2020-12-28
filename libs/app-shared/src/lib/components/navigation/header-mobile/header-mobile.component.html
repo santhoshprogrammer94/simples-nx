@@ -19,6 +19,7 @@
   <mat-toolbar class="mat-elevation-z4" color="primary">
     <button mat-icon-button (click)="onMenuClick()">
       <mat-icon>menu</mat-icon>
-    </button> Header da Aplicação
+    </button> Header da Aplicação {{leftSideNav$ | async}}
+
   </mat-toolbar>
 </header>

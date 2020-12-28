@@ -2,7 +2,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Store } from '@ngrx/store';
-import { NavigationFacade } from '@simples/app-store';
+import { NavigationFacade, SettingsFacade } from '@simples/app-store';
 import { interval, Observable } from 'rxjs';
 import { delayWhen } from 'rxjs/operators';
 
@@ -77,16 +77,21 @@ export class AppComponent {
   isShowing = false;
   // showSubSubMenu: boolean = false;
   navigationLoading$: Observable<boolean>;
+  leftSideNav$ = this.settingsFacade.selectSidenav$;
+
   constructor(
     private store: Store,
     private navFacade: NavigationFacade,
+    private settingsFacade: SettingsFacade,
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher
   ) {
     // this.stats$ = this.store.select(fromIssue.selectStats);
     // this.navigationLoading$ = this.navFacade.selectLoading$;
+    console.log('constructor AppComponent');
 
-    this.navigationLoading$ = this.navigationLoading$ = this.navFacade.selectLoading$.pipe(
+    this.navigationLoading$ = this.navFacade.selectLoading$.pipe(
+      // tap((val) => console.log(`initial emit:${val}`)),
       delayWhen((loading) => interval(loading ? 0 : 800))
     );
 
@@ -95,19 +100,15 @@ export class AppComponent {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  ngOnInit() {}
-
-  onShowHideSideBar() {
-    console.log('clicou', this.isExpanded);
-
-    this.isExpanded = !this.isExpanded;
-
-    if (!this.isExpanded) {
-      this.sidenav.close();
-    } else {
-      this.sidenav.open();
-    }
+  ngOnInit() {
+    console.log('ngOnInit AppComponent');
   }
+
+  onChangeLeftSideNav() {
+    const sideNavPayload = !this.sidenav?.opened;
+    this.settingsFacade.changeSidenav(sideNavPayload);
+  }
+
 
   mouseenter() {
     if (!this.isExpanded) {

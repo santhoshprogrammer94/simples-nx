@@ -1,5 +1,5 @@
 import { BaseMysqlEntity } from '@simples/api-shared';
-import { Column, Entity, JoinColumn, ApiProperty, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 
 import { UsuariosEntity } from '../usuarios/usuarios.entity';
 

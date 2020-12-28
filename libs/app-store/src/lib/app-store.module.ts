@@ -12,6 +12,7 @@ import { metaReducers, reducers } from './';
 import { entityConfig } from './entity-metadata';
 import { HydrationEffects } from './hydration/hydration.effects';
 import { RouterEffects } from './router/router.effects';
+import { SettingsEffects } from './settings/settings.effects';
 
 const RouterStateMinimal = 1;
 
@@ -20,14 +21,14 @@ const RouterStateMinimal = 1;
     CommonModule,
     HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([HydrationEffects, RouterEffects]),
+    EffectsModule.forRoot([HydrationEffects, RouterEffects, SettingsEffects]),
     StoreRouterConnectingModule.forRoot({ routerState: RouterStateMinimal }),
     EntityDataModule.forRoot(entityConfig),
     environment.production
       ? []
       : StoreDevtoolsModule.instrument({
-          name: 'Solsig Carlos 2019',
-          maxAge: 25,
+          name: '2020 Estoques',
+          maxAge: 26,
         }),
   ],
 })
