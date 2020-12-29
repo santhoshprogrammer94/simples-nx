@@ -13,7 +13,7 @@ export class HeaderMobileComponent implements OnInit {
   // You will want to hide and show a back-arrow depending on navigation state, if linking to other components from within the components
   // Not handling that in this demo.  Just leaving it here for illustration purposes
   showBackArrow = true;
-  leftSideNav$ = this.settingsFacade.selectSidenav$;
+  // leftSideNav$ = this.settingsFacade.selectSidenav$;
   // outro1$ = this.navFacade.outro1$;
   // outro2$ = this.navFacade.outro2$;
 

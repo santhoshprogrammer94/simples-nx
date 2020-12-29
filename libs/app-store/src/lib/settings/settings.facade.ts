@@ -12,8 +12,7 @@ export class SettingsFacade {
 
   constructor(private store$: Store) {}
 
-  changeSidenav(payload: boolean) {
-    // console.log('=> facade', payload);
+  changeLeftSidenav(payload: boolean) {
     this.store$.dispatch(thisActions.actionSettingsChangeSideNav({ sideNav: payload }));
   }
 }

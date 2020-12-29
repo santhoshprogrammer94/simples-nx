@@ -10,7 +10,8 @@ export class FooterMobileComponent implements OnInit {
 
   showBackArrow = true;
 
-  opened = true;
+
+  @Output() sideNavClosed = new EventEmitter();
 
 
   constructor() {}
@@ -20,4 +21,9 @@ export class FooterMobileComponent implements OnInit {
   onToggleSidenav = () => {
     this.sidenavToggle.emit(); // Emit event to parent component so it can open/close sidenav
   };
+
+  onMenuClick() {
+    this.sideNavClosed.emit();
+  }
+
 }

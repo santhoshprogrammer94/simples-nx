@@ -106,7 +106,7 @@ export class AppComponent {
 
   onChangeLeftSideNav() {
     const sideNavPayload = !this.sidenav?.opened;
-    this.settingsFacade.changeSidenav(sideNavPayload);
+    this.settingsFacade.changeLeftSidenav(sideNavPayload);
   }
 
 
