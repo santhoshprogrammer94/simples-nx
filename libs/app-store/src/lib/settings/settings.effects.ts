@@ -6,10 +6,7 @@ import { ActivationEnd, Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, State, Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { combineLatest } from 'rxjs/internal/observable/combineLatest';
-import { interval } from 'rxjs/internal/observable/interval';
-import { merge } from 'rxjs/internal/observable/merge';
-import { of } from 'rxjs/internal/observable/of';
+
 import {
   distinctUntilChanged,
   filter,
@@ -37,6 +34,7 @@ import {
   selectSettingsLanguage,
   selectSettingsSideNav,
 } from './settings.selectors';
+import { of, interval } from 'rxjs';
 
 // import { combineLatest, interval, merge, of } from 'rxjs';
 export const SETTINGS_KEY = 'SETTINGS';

@@ -1,10 +1,18 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Store } from '@ngrx/store';
 import { NavigationFacade, SettingsFacade } from '@simples/app-store';
 import { interval, Observable } from 'rxjs';
 import { delayWhen } from 'rxjs/operators';
+
+import { navigation } from './menu';
 
 // import * as fromIssue from './store/issue/issue.selectors';
 // import { reset } from './store/meta-reducers';
@@ -13,62 +21,9 @@ import { delayWhen } from 'rxjs/operators';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  appitems = [
-    {
-      label: 'Item 1 (with Font awesome icon)',
-      faIcon: 'fab fa-500px',
-      items: [
-        {
-          label: 'Item 1.1',
-          faIcon: 'fab fa-accusoft',
-        },
-        {
-          label: 'Item 1.2',
-          faIcon: 'fab fa-accessible-icon',
-          items: [
-            {
-              label: 'Item 1.2.1',
-              faIcon: 'fas fa-allergies',
-            },
-            {
-              label: 'Item 1.2.2',
-              faIcon: 'fas fa-ambulance',
-              items: [
-                {
-                  label: 'Item 1.2.2.1',
-                  faIcon: 'fas fa-anchor',
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      label: 'Item 2',
-      icon: 'alarm',
-      items: [
-        {
-          label: 'Item 2.1',
-          icon: 'favorite',
-        },
-        {
-          label: 'Item 2.2',
-          icon: 'favorite_border',
-        },
-      ],
-    },
-    {
-      label: 'Item 3',
-      icon: 'offline_pin',
-    },
-    {
-      label: 'Item 4',
-      icon: 'star_rate',
-      hidden: true,
-    },
-  ];
+export class AppComponent implements OnInit, OnDestroy {
+  appitems = navigation;
+
   private _mobileQueryListener: () => void;
   mobileQuery: MediaQueryList;
   isExpanded = true;
@@ -89,6 +44,8 @@ export class AppComponent {
     // this.stats$ = this.store.select(fromIssue.selectStats);
     // this.navigationLoading$ = this.navFacade.selectLoading$;
     console.log('constructor AppComponent');
+
+    console.log(JSON.stringify(this.appitems));
 
     this.navigationLoading$ = this.navFacade.selectLoading$.pipe(
       // tap((val) => console.log(`initial emit:${val}`)),
@@ -126,6 +83,7 @@ export class AppComponent {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
+  // tslint:disable-next-line: member-ordering
   shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some((h) =>
     h.test(window.location.host)
   );

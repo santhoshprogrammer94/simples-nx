@@ -10,12 +10,20 @@ import { HeaderMobileComponent } from './components/navigation/header-mobile/hea
 import { SidenavComponent } from './components/navigation/sidenav/sidenav.component';
 import { MaterialModule } from './material.module';
 
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
+
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
     NgMaterialMultilevelMenuModule, // Import here
+    PerfectScrollbarModule
   ],
   declarations: [
     FooterMobileComponent,
@@ -32,6 +40,9 @@ import { MaterialModule } from './material.module';
     LoaderComponent,
   ],
 
-  providers: [MultilevelMenuService],
+  providers: [MultilevelMenuService,  {
+    provide: PERFECT_SCROLLBAR_CONFIG,
+    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+  }],
 })
 export class AppSharedModule {}

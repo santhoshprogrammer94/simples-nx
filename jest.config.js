@@ -12,5 +12,9 @@ module.exports = {
     '<rootDir>/libs/pages',
     '<rootDir>/libs/app-shared',
     '<rootDir>/libs/app-store',
+    '<rootDir>/libs/app-pessoas',
+    '<rootDir>/libs/app-cruds',
+    '<rootDir>/libs/app-auxiliares',
+    '<rootDir>/libs/api-auxiliares',
   ],
 };

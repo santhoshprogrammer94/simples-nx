@@ -24,8 +24,6 @@
               "apps/simples-app/src/styles.scss",
               "libs/styles/src/index.scss"
             ],
-
-
             "stylePreprocessorOptions": {
               "includePaths": [
                 "libs/styles/src/",
@@ -34,7 +32,10 @@
               ]
             },
             "extractCss": true,
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "hammerjs"
+            ]
           },
           "configurations": {
             "production": {
@@ -447,6 +448,124 @@
           ],
           "options": {
             "jestConfig": "libs/app-store/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app-pessoas": {
+      "projectType": "library",
+      "root": "libs/app-pessoas",
+      "sourceRoot": "libs/app-pessoas/src",
+      "prefix": "simples",
+      "targets": {
+        "lint": {
+          "executor": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/app-pessoas/tsconfig.lib.json",
+              "libs/app-pessoas/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/app-pessoas/**/*"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/app-pessoas"
+          ],
+          "options": {
+            "jestConfig": "libs/app-pessoas/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app-cruds": {
+      "projectType": "library",
+      "root": "libs/app-cruds",
+      "sourceRoot": "libs/app-cruds/src",
+      "prefix": "simples",
+      "targets": {
+        "lint": {
+          "executor": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/app-cruds/tsconfig.lib.json",
+              "libs/app-cruds/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/app-cruds/**/*"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/app-cruds"
+          ],
+          "options": {
+            "jestConfig": "libs/app-cruds/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app-auxiliares": {
+      "projectType": "library",
+      "root": "libs/app-auxiliares",
+      "sourceRoot": "libs/app-auxiliares/src",
+      "prefix": "simples",
+      "targets": {
+        "lint": {
+          "executor": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/app-auxiliares/tsconfig.lib.json",
+              "libs/app-auxiliares/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/app-auxiliares/**/*"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/app-auxiliares"
+          ],
+          "options": {
+            "jestConfig": "libs/app-auxiliares/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-auxiliares": {
+      "root": "libs/api-auxiliares",
+      "sourceRoot": "libs/api-auxiliares/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api-auxiliares/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/api-auxiliares"
+          ],
+          "options": {
+            "jestConfig": "libs/api-auxiliares/jest.config.js",
             "passWithNoTests": true
           }
         }

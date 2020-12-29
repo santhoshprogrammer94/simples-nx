@@ -24,7 +24,11 @@
       "@simples/api-shared": ["libs/api-shared/src/index.ts"],
       "@simples/pages": ["libs/pages/src/index.ts"],
       "@simples/app-shared": ["libs/app-shared/src/index.ts"],
-      "@simples/app-store": ["libs/app-store/src/index.ts"]
+      "@simples/app-store": ["libs/app-store/src/index.ts"],
+      "@simples/app-pessoas": ["libs/app-pessoas/src/index.ts"],
+      "@simples/app-cruds": ["libs/app-cruds/src/index.ts"],
+      "@simples/app-auxiliares": ["libs/app-auxiliares/src/index.ts"],
+      "@simples/api-auxiliares": ["libs/api-auxiliares/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"],

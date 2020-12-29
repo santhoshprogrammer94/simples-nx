@@ -17,18 +17,18 @@ export class SidenavComponent implements OnInit {
 
 
   config = {
-    // paddingAtStart: true,
-    // interfaceWithRoute: true,
-    // classname: 'my-custom-class',
+    paddingAtStart: true,
+    interfaceWithRoute: true,
+    classname: 'my-custom-class',
     // listBackgroundColor: `rgb(208, 241, 239)`,
     // fontColor: `rgb(8, 54, 71)`,
     // backgroundColor: `rgb(208, 241, 239)`,
     // selectedListFontColor: `red`,
-    // highlightOnSelect: true,
-    // collapseOnSelect: true,
-    // useDividers: false,
-    // rtlLayout: false,
-  };
+    highlightOnSelect: true,
+    collapseOnSelect: true,
+    useDividers: false,
+    rtlLayout: false
+};
 
   constructor(
     private router: Router,
@@ -53,4 +53,12 @@ export class SidenavComponent implements OnInit {
     this.router.navigateByUrl('/about');
     this.sideNavClosed.emit(); // Emit event to parent component so it can tell sidenav to close
   }
+
+
+  fakeArray(length: number): Array<any> {
+    if (length >= 0) {
+      return new Array(length);
+    }
+  }
+
 }

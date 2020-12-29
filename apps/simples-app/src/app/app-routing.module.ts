@@ -20,6 +20,11 @@ const routes: Routes = [
     path: 'nx',
     loadChildren: () => import('@simples/pages').then((m) => m.NxModule)
   },
+
+  {
+    path: 'auxiliares/cargos',
+    loadChildren: () => import('@simples/app-auxiliares').then((m) => m.CargosModule)
+  },
 ];
 
 @NgModule({
