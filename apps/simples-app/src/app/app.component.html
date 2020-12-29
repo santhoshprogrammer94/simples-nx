@@ -12,11 +12,11 @@
       <simples-header-mobile (sideNavClosed)="onChangeLeftSideNav()">
       </simples-header-mobile>
     </div>
-
+    <mat-progress-bar *ngIf="navigationLoading$ | async"
+      style="display: flex; justify-content: center; align-items: center" color="primary" mode="indeterminate">
+    </mat-progress-bar>
     <main class="container mat-app-background">
-      <mat-progress-bar *ngIf="navigationLoading$ | async"
-        style="display: flex; justify-content: center; align-items: center" color="primary" mode="indeterminate">
-      </mat-progress-bar>
+
       <router-outlet></router-outlet>
     </main>
 

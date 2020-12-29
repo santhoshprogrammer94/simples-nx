@@ -49,7 +49,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.navigationLoading$ = this.navFacade.selectLoading$.pipe(
       // tap((val) => console.log(`initial emit:${val}`)),
-      delayWhen((loading) => interval(loading ? 0 : 800))
+      delayWhen((loading) => interval(loading ? 0 : 1300))
     );
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
