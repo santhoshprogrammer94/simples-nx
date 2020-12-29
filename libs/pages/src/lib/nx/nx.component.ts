@@ -19,18 +19,7 @@ export class NxComponent implements OnInit, AfterViewInit, OnDestroy {
   isLoading = true;
   count = 0;
 
-  constructor(private store: Store, private navFacade: NavigationFacade) {
-   this.navFacade.selectLoading$
-      .pipe(takeUntil(this.onDestroy))
-      .subscribe((loading) => {
-        timer(800)
-          .pipe(takeUntil(this.onDestroy))
-          .subscribe((t) => {
-            this.isLoading = loading;
-            console.log(this.count++);
-          });
-      });
-  }
+  constructor(private store: Store, private navFacade: NavigationFacade) {}
 
   ngOnInit(): void {
     console.log('ngOnInit');

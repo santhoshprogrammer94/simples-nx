@@ -45,7 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // this.navigationLoading$ = this.navFacade.selectLoading$;
     console.log('constructor AppComponent');
 
-    console.log(JSON.stringify(this.appitems));
+    // console.log(JSON.stringify(this.appitems));
 
     this.navigationLoading$ = this.navFacade.selectLoading$.pipe(
       // tap((val) => console.log(`initial emit:${val}`)),
