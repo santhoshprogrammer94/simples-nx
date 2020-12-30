@@ -1,17 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LibApiCoreModule } from '@simples-org/lib-api-core';
 
 import { CargosController } from './cargos.controller';
-import { CargoEntity } from './cargos.entity';
 import { CargosService } from './cargos.service';
+import { CargosEntity } from "./cargos.entity";
 
 describe('CargosController', () => {
   let app: TestingModule;
 
   beforeAll(async () => {
     app = await Test.createTestingModule({
-      imports: [LibApiCoreModule, TypeOrmModule.forFeature([CargoEntity])],
+      imports: [TypeOrmModule.forFeature([CargosEntity])],
       controllers: [CargosController],
       providers: [CargosService],
     }).compile();

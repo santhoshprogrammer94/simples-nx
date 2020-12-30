@@ -1,4 +1,3 @@
-
 body {
   display: flex;
   flex-direction: column;
@@ -25,7 +24,18 @@ body {
   // margin-left: 12px;
 
 }
+
 mat-sidenav{
   border-right:0px;
   box-shadow:  2px 0 6px rgba(0,0,0,0.30);
+}
+
+.floating {
+  float: none;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: grey;
+  z-index: 200000;
+
 }

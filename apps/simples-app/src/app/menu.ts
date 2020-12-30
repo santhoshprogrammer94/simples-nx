@@ -1,31 +1,18 @@
 export const navigation: any[] = [
   {
     id: 'dashboards',
-    label: 'Dashboards',
+    label: 'Dashboard',
     translate: 'NAV.DASHBOARDS',
     type: 'collapsable',
     icon: 'dashboard',
-    items: [
-      {
-        id: 'analytics',
-        label: 'Analytics',
-        type: 'item',
-        link: '/apps/dashboards/analytics',
-      },
-      {
-        id: 'project',
-        label: 'Project',
-        type: 'item',
-        link: '/apps/dashboards/project',
-      },
-    ],
+    link: '/',
   },
   {
-    id: 'calendar',
-    label: 'Calendar',
+    id: 'testes',
+    label: 'Verificações',
     translate: 'NAV.CALENDAR',
     type: 'item',
-    icon: 'today',
+    icon: 'build',
     link: '/nx',
   },
   {
@@ -33,20 +20,24 @@ export const navigation: any[] = [
     label: 'Auxiliares',
     translate: 'NAV.ECOMMERCE',
     type: 'collapsable',
-    icon: 'shopping_cart',
+    icon: 'import_contacts',
     items: [
       {
         id: 'cargos',
         label: 'Cargos',
         type: 'item',
-        link: '/auxiliares/cargos',
-        exactMatch: true,
+        link: '/auxiliares/cargos/index',
+        exactMatch: false,
+        matchURL: function() {
+          // Some Logic
+          return true;
+      }
       },
       {
-        id: 'productDetail',
-        label: 'Product Detail',
+        id: 'cargos2',
+        label: 'Profissões',
         type: 'item',
-        link: '/apps/e-commerce/products/1/printed-dress',
+        link: '/auxiliares/cargos/',
       },
       {
         id: 'orders',

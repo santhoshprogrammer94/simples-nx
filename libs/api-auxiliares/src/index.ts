@@ -1,1 +1,1 @@
-export * from './lib/api-auxiliares.module';
+export * from './lib/cargos/cargos.module';

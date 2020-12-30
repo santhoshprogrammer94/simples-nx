@@ -21,9 +21,7 @@ export class HeaderMobileComponent implements OnInit {
 
   constructor(private router: Router, private settingsFacade: SettingsFacade) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   onMenuClick() {
     this.sideNavClosed.emit();
@@ -31,5 +29,9 @@ export class HeaderMobileComponent implements OnInit {
 
   onChangeProfileImage() {
     this.router.navigateByUrl('/profile/personal');
+  }
+
+  open(menu) {
+    menu.openMenu();
   }
 }

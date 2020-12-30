@@ -1,17 +1,9 @@
-import { MediaMatcher } from '@angular/cdk/layout';
-import {
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Store } from '@ngrx/store';
 import { NavigationFacade, SettingsFacade } from '@simples/app-store';
-import { interval, Observable } from 'rxjs';
-import { delayWhen } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
+import { onMainContentChange, sideNavAnimation, sideNavContainerAnimation } from './app.animations';
 import { navigation } from './menu';
 
 // import * as fromIssue from './store/issue/issue.selectors';
@@ -22,39 +14,27 @@ import { navigation } from './menu';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
+
+
   appitems = navigation;
 
-  private _mobileQueryListener: () => void;
-  mobileQuery: MediaQueryList;
-  isExpanded = true;
   @ViewChild('sidenav') sidenav: MatSidenav;
-  // showSubmenu: boolean = false;
-  isShowing = false;
-  // showSubSubMenu: boolean = false;
   navigationLoading$: Observable<boolean>;
   leftSideNav$ = this.settingsFacade.selectSidenav$;
 
+  public onSideNavChange: boolean;
+
   constructor(
-    private store: Store,
     private navFacade: NavigationFacade,
     private settingsFacade: SettingsFacade,
-    changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher
+    changeDetectorRef: ChangeDetectorRef
   ) {
-    // this.stats$ = this.store.select(fromIssue.selectStats);
-    // this.navigationLoading$ = this.navFacade.selectLoading$;
-    console.log('constructor AppComponent');
+    this.navigationLoading$ = this.navFacade.selectLoading$;
 
-    // console.log(JSON.stringify(this.appitems));
-
-    this.navigationLoading$ = this.navFacade.selectLoading$.pipe(
-      // tap((val) => console.log(`initial emit:${val}`)),
-      delayWhen((loading) => interval(loading ? 0 : 1300))
-    );
-
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+    this.navigationLoading$.subscribe((res) => {
+      console.log('SideNav', res);
+      this.onSideNavChange = res;
+    });
   }
 
   ngOnInit() {
@@ -66,21 +46,16 @@ export class AppComponent implements OnInit, OnDestroy {
     this.settingsFacade.changeLeftSidenav(sideNavPayload);
   }
 
-
   mouseenter() {
-    if (!this.isExpanded) {
-      this.isShowing = true;
-    }
+    console.log('mouse entrou');
   }
 
   mouseleave() {
-    if (!this.isExpanded) {
-      this.isShowing = false;
-    }
+    console.log('mouse saiu');
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+    console;
   }
 
   // tslint:disable-next-line: member-ordering

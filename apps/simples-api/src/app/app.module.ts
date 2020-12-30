@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CargosModule, TestesModule } from '@simples/api-cruds';
+import { CargosModule } from '@simples/api-auxiliares';
+import { TestesModule } from '@simples/api-cruds';
 import { ApiDatabaseModule } from '@simples/api-database';
 import { PessoasModule, UsuariosModule } from '@simples/api-pessoas';
 

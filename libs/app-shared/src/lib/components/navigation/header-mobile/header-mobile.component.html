@@ -17,9 +17,35 @@
 
 <header fxHide fxShow.gt-xs>
   <mat-toolbar class="mat-elevation-z4" color="primary">
-    <button mat-icon-button (click)="onMenuClick()">
-      <mat-icon>menu</mat-icon>
+
+
+    <button mat-icon-button>
+      <mat-icon (click)="onMenuClick()">arrow_back</mat-icon>
     </button> Header da Aplicação
 
+    <span class="fill-remaining-space">
+
+      <mat-menu #menu="matMenu" [overlapTrigger]="false">
+        <button mat-menu-item>
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>people_outline</mat-icon>
+          <span>Connecting</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>videocam</mat-icon>
+          <span>Let's talk</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </span>
+    <button #r="matMenuTrigger" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon (click)="onMenuClick()" (mouseover)="open(r)">menu</mat-icon>
+    </button>
   </mat-toolbar>
 </header>

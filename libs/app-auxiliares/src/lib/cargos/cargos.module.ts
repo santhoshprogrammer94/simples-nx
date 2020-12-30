@@ -9,12 +9,16 @@ import { FormComponent } from './form/form.component';
 import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'index', pathMatch: 'full' },
   {
     path: '',
     component: CargosComponent,
-  },
+    children: [
+      { path: 'index', component: IndexComponent, data: { page: 'Todos Cargos', tela: 'administradorIconeCargos' } },
+      { path: ':id', component: FormComponent }
+    ]
+  }
 ];
-
 @NgModule({
   imports: [
     CommonModule,
