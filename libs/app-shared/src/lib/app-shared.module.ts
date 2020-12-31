@@ -1,3 +1,4 @@
+import { ToolbarCrudSimplesComponent } from './components/toolbar-crud-simples/toolbar-crud-simples.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
@@ -50,6 +51,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CrudDlgApiComponent,
     IndexDlgApiComponent,
     FormDlgApiComponent,
+
+    ToolbarCrudSimplesComponent
   ],
   exports: [
     FooterMobileComponent,
@@ -62,6 +65,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CrudDlgApiComponent,
     IndexDlgApiComponent,
     FormDlgApiComponent,
+
+    ToolbarCrudSimplesComponent
   ],
 
   providers: [

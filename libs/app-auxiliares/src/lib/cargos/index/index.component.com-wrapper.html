@@ -1,5 +1,4 @@
-<div class="wrapper" fxLayout="column" *ngIf="data$ | async as data; else loading">
-
+<div class="wrapper"  fxLayout="column" *ngIf="data$ | async as data; else loading">
   <div class="header">
     <app-toolbar-crud-simples class="mat-elevation-z22" [title]="titulo" [localParams]="localParams"
       (refresh)="onRefresh($event)" [showAddButton]="true" (clickSearch)="onClickSearch()"
@@ -7,7 +6,8 @@
       [matMenuFilter]="menuFilter" [showMenuButton]="false" (add)="onAdd()"></app-toolbar-crud-simples>
   </div>
 
-  <div class="content main-container" #scrollContainer>
+
+  <div class="content">
     <table mat-table #table [dataSource]="data" matSort matSortActive="CODIGO" matSortDirection="desc"
       class="mat-elevation-z3">
 
@@ -32,6 +32,7 @@
   </div>
 
   <div class="footer">
+
     <mat-toolbar color="primary" class="mat-toolbar-single-row-pagination mat-elevation-z2">
       <mat-toolbar-row>
         <span class="menu-spacer"></span>
@@ -43,8 +44,6 @@
     </mat-toolbar>
   </div>
 </div>
-
-
 
 <div style="visibility: hidden; display: none">
   <button mat-button [matMenuTriggerFor]="menuMore">

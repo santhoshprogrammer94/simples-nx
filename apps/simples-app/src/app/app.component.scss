@@ -12,7 +12,7 @@ body {
   height: 100%;
 
   position: relative;
-  padding: 10px;
+  // padding: 10px;
   // padding-top: 10px;
   // padding-bottom: 0px;
   // background-color: gold;
@@ -38,4 +38,41 @@ mat-sidenav{
   background-color: grey;
   z-index: 200000;
 
+}
+
+.main-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100vh !important;
+  position: relative;
+  padding: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #dcdcdc;
+  // margin: 25px;
+  z-index: 20;
+}
+
+sis-toolbar-crud-simples {
+  padding: 0px;
+  z-index: 99990;
+  background-color: red;
+}
+.mat-drawer-content {
+  height: 100vh !important;
+}
+
+.mat-paginator {
+  background: transparent !important;
+}
+
+.mat-paginator-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 56px;
+  padding: 0px !important;
+  flex-wrap: wrap-reverse;
+  width: 100%;
+  background-color: transparent;
 }

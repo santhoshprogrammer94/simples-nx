@@ -23,9 +23,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    FlexLayoutModule,
     MaterialModule,
     AppSharedModule,
-    FlexLayoutModule,
   ],
   declarations: [CargosComponent, FormComponent, IndexComponent],
 })
