@@ -38,6 +38,10 @@ export const navigation: any[] = [
         label: 'Profissões',
         type: 'item',
         link: '/auxiliares/cargos/',
+        dontEmit: true,
+        navigationExtras: {
+            queryParams: { order: 'popular', filter: 'new' },
+        }
       },
       {
         id: 'orders',

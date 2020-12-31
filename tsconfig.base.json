@@ -28,7 +28,8 @@
       "@simples/app-pessoas": ["libs/app-pessoas/src/index.ts"],
       "@simples/app-cruds": ["libs/app-cruds/src/index.ts"],
       "@simples/app-auxiliares": ["libs/app-auxiliares/src/index.ts"],
-      "@simples/api-auxiliares": ["libs/api-auxiliares/src/index.ts"]
+      "@simples/api-auxiliares": ["libs/api-auxiliares/src/index.ts"],
+      "@simples/app-core": ["libs/app-core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"],

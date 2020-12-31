@@ -1,0 +1,40 @@
+$height__main-toolbar: 64px;
+:host {
+  display: block;
+  height: 100%;
+
+  &:after {
+    right: 0;
+  }
+}
+
+table {
+  width: 100%;
+}
+
+.centralizado {
+  text-align: center;
+}
+
+.adireita {
+  text-align: right;
+}
+
+.aesquerda {
+  text-align: left;
+}
+
+.mat-column-id {
+  // color: #333;
+  padding-right: 10px;
+  font-weight: bold;
+  max-width: 70px !important;
+  width: 40px;
+}
+
+.mat-column-description {
+  // color: #222;
+  padding-right: 5px;
+  min-width: 120px !important;
+  width: 90%;
+}

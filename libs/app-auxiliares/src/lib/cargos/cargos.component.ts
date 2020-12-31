@@ -1,21 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Injector,
+  OnInit,
+} from '@angular/core';
+import { CrudDlgApiComponent } from '@simples/app-shared';
 import { Observable } from 'rxjs';
+
 import { CargosCollectionService } from './cargos.service';
 
 @Component({
   selector: 'simples-cargos',
   templateUrl: './cargos.component.html',
-  styleUrls: ['./cargos.component.scss']
+  styleUrls: ['./cargos.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CargosComponent implements OnInit {
+export class CargosComponent
+  extends CrudDlgApiComponent
+  implements OnInit, AfterViewInit {
   data$: Observable<any[]>;
+  titulo = 'Cargos';
 
-  constructor(private dataService: CargosCollectionService) {
+  constructor(
+    private dataService: CargosCollectionService,
+    injector: Injector,
+    @Inject('environment') env?: any
+  ) {
+    super(injector, env);
+
     this.data$ = this.dataService.filteredEntities$;
+
+    this.onRefresh();
   }
 
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  onRefresh(params?) {
     this.dataService.load();
   }
 
@@ -23,17 +45,15 @@ export class CargosComponent implements OnInit {
     this.dataService.setFilter(text);
   }
 
-
   onSubmit(issue: any): void {
     this.dataService.add(issue);
   }
 
   reload() {
-    console.log('Reload from cargos.component.ts');
+    this.log.info('Reload from cargos.component.ts');
   }
 
   onActivate(elementRef) {
-
     if (!elementRef) {
       console.log('Nothing Here');
       return;
@@ -41,12 +61,9 @@ export class CargosComponent implements OnInit {
       // console.log('elementRef', elementRef);
 
       if (elementRef.refresh) {
-
       }
       if (elementRef.dblClick) {
-
       }
-
     }
   }
 

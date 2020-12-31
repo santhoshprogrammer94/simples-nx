@@ -5,8 +5,11 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppCoreModule } from '@simples/app-core';
 import { AppSharedModule, MaterialModule } from '@simples/app-shared';
+import { AppStoreModule } from '@simples/app-store';
 
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContainerComponent } from './components/container/container.component';
@@ -17,7 +20,6 @@ import { ContainerComponent } from './components/container/container.component';
 
 // import { AppSharedModule, MaterialModule } from '@simples/app-shared';
 
-import { AppStoreModule } from "@simples/app-store";
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,13 +32,16 @@ import { AppStoreModule } from "@simples/app-store";
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    AppCoreModule,
     AppRoutingModule,
     MaterialModule,
-    AppSharedModule,
-    AppStoreModule
-
+    AppSharedModule.forRoot(environment),
+    AppStoreModule,
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [
+    { provide: 'environment', useValue: environment },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

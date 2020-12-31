@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule, Routes } from '@angular/router';
 import { AppSharedModule, MaterialModule } from '@simples/app-shared';
@@ -29,4 +29,30 @@ const routes: Routes = [
   ],
   declarations: [CargosComponent, FormComponent, IndexComponent],
 })
-export class CargosModule {}
+export class CargosModule {
+  public static forRoot(
+    environment: any
+  ): ModuleWithProviders<CargosModule> {
+    return {
+      ngModule: CargosModule,
+      providers: [
+        {
+          provide: 'env',
+          useValue: environment,
+        },
+      ],
+    };
+  }
+
+  constructor(
+    @Optional()
+    @SkipSelf()
+    parentModule?: CargosModule
+  ) {
+    if (parentModule) {
+      throw new Error(
+        'CargosModule is already loaded. Import it in the AppModule only'
+      );
+    }
+  }
+}
