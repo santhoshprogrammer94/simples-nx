@@ -1,13 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { Inject, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import {
+  Inject,
+  ModuleWithProviders,
+  NgModule,
+  Optional,
+  SkipSelf,
+} from '@angular/core';
+import { StyleManagerService } from './services/style-manager.service';
+import { ThemeService } from './services/theme.service';
+
 
 @NgModule({
   imports: [CommonModule],
+  providers: [StyleManagerService, ThemeService]
 })
 export class AppCoreModule {
   public static forRoot(env: any): ModuleWithProviders<AppCoreModule> {
     return {
       ngModule: AppCoreModule,
+
       providers: [
         {
           provide: 'env',

@@ -58,21 +58,3 @@ sis-toolbar-crud-simples {
   z-index: 99990;
   background-color: red;
 }
-.mat-drawer-content {
-  height: 100vh !important;
-}
-
-.mat-paginator {
-  background: transparent !important;
-}
-
-.mat-paginator-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  min-height: 56px;
-  padding: 0px !important;
-  flex-wrap: wrap-reverse;
-  width: 100%;
-  background-color: transparent;
-}

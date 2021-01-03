@@ -1,10 +1,10 @@
 <div class="wrapper" fxLayout="column" *ngIf="data$ | async as data; else loading">
 
   <div class="header">
-    <app-toolbar-crud-simples class="mat-elevation-z22" [title]="titulo" [localParams]="localParams"
-      (refresh)="onRefresh($event)" [showAddButton]="true" (clickSearch)="onClickSearch()"
-      (cancelSearch)="onCancelSearch()" (filterLocal)="onFilter($event)" [matMenuMore]="menuMore"
-      [matMenuFilter]="menuFilter" [showMenuButton]="false" (add)="onAdd()"></app-toolbar-crud-simples>
+    <app-toolbar-crud-simples [title]="titulo" [localParams]="localParams" (refresh)="onRefresh($event)"
+      [showAddButton]="true" (clickSearch)="onClickSearch()" (cancelSearch)="onCancelSearch()"
+      (filterLocal)="onFilter($event)" [matMenuMore]="menuMore" [matMenuFilter]="menuFilter" [showMenuButton]="false"
+      (add)="onAdd()"></app-toolbar-crud-simples>
   </div>
 
   <div class="content main-container" #scrollContainer>

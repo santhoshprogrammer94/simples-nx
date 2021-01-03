@@ -1,8 +1,10 @@
-import { SettingsFacade } from '@simples/app-store';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
+import { ThemeService } from '@simples/app-core';
+import { SettingsFacade } from '@simples/app-store';
+import { Observable } from 'rxjs';
+
+import { Option } from "@simples/app-core";
 
 @Component({
   selector: 'simples-header-mobile',
@@ -16,13 +18,20 @@ export class HeaderMobileComponent implements OnInit {
   leftSideNav$ = this.settingsFacade.selectSidenav$;
   // outro1$ = this.navFacade.outro1$;
   // outro2$ = this.navFacade.outro2$;
+  options$: Observable<Array<Option>> = this.themeService.getThemeOptions();
 
   @Output() sideNavClosed = new EventEmitter();
-  @Input() windowTitle = 'Janela Sem Título Configurado'
+  @Input() windowTitle = 'Janela Sem Título Configurado';
 
-  constructor(private router: Router, private settingsFacade: SettingsFacade) {}
+  constructor(
+    private router: Router,
+    private readonly themeService: ThemeService,
+    private settingsFacade: SettingsFacade
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.themeService.setTheme('deeppurple-amber');
+  }
 
   onLeftSideNavBackClick() {
     this.sideNavClosed.emit();
@@ -34,6 +43,10 @@ export class HeaderMobileComponent implements OnInit {
 
   onChangeProfileImage() {
     this.router.navigateByUrl('/profile/personal');
+  }
+
+  themeChangeHandler(themeToSet) {
+    this.themeService.setTheme(themeToSet);
   }
 
   open(menu) {

@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Option, ThemeService } from '@simples/app-core';
 import { NavigationFacade } from '@simples/app-store';
 import { Observable, Subject, timer } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'simples-nx',
@@ -14,12 +14,22 @@ export class NxComponent implements OnInit, AfterViewInit, OnDestroy {
   private timer;
   private readonly onDestroy = new Subject<void>();
 
+  @Input() options: Array<Option>;
+  @Output() themeChange: EventEmitter<string> = new EventEmitter<string>();
+
   direction = 'column';
   navigationLoading$: Observable<boolean>;
   isLoading = true;
   count = 0;
 
-  constructor(private store: Store, private navFacade: NavigationFacade) {}
+  private _element: HTMLScriptElement;
+  public style = '';
+  constructor(
+    private store: Store,
+    private navFacade: NavigationFacade,
+    private cdr: ChangeDetectorRef,
+    private themeService: ThemeService
+  ) {}
 
   ngOnInit(): void {
     console.log('ngOnInit');
@@ -37,6 +47,9 @@ export class NxComponent implements OnInit, AfterViewInit, OnDestroy {
     if (length >= 0) {
       return new Array(length);
     }
+  }
+  themeChangeHandler(themeToSet) {
+    this.themeService.setTheme(themeToSet);
   }
 
   ngOnDestroy(): void {
