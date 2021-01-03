@@ -30,7 +30,7 @@ export class HeaderMobileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.themeService.setTheme('deeppurple-amber');
+    this.themeService.setTheme('indigo-pink');
   }
 
   onLeftSideNavBackClick() {
