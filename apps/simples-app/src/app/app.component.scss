@@ -4,57 +4,9 @@ body {
   min-height: 100vh;
 }
 
-.container {
-  // flex: 1 0 auto;
-
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: 100%;
-
-  position: relative;
-  // padding: 10px;
-  // padding-top: 10px;
-  // padding-bottom: 0px;
-  // background-color: gold;
-  // margin: 25px;
-  margin-bottom: 50px;
-  z-index: 20;
-
-  // background-color:rgb(216, 216, 216);
-  // margin-left: 12px;
-
-}
 
 mat-sidenav{
   border-right:0px;
   box-shadow:  2px 0 6px rgba(0,0,0,0.30);
 }
 
-.floating {
-  float: none;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  background-color: grey;
-  z-index: 200000;
-
-}
-
-.main-container {
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: 100vh !important;
-  position: relative;
-  padding: 10px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  // background-color: #dcdcdc;
-  // margin: 25px;
-  z-index: 20;
-}
-
-sis-toolbar-crud-simples {
-  padding: 0px;
-  z-index: 99990;
-  background-color: red;
-}
