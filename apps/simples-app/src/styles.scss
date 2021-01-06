@@ -167,3 +167,10 @@ table {
   // margin-left: 12px;
 
 }
+
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label:not(.mat-empty):not(.mat-form-field-empty) {
+  // color
+  // scale or font-size
+  font-size: 18px;
+  color: green;
+}

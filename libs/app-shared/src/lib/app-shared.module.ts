@@ -1,42 +1,31 @@
-import { ToolbarCrudSimplesComponent } from './components/toolbar-crud-simples/toolbar-crud-simples.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { CommonModule } from '@angular/common';
-import {
-  ModuleWithProviders,
-  NgModule,
-  Optional,
-  SkipSelf,
-} from '@angular/core';
+import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {
-  MultilevelMenuService,
-  NgMaterialMultilevelMenuModule,
-} from 'ng-material-multilevel-menu';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogModule } from '@ngneat/dialog';
+import { ErrorTailorModule } from '@ngneat/error-tailor';
+import { MultilevelMenuService, NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import {
-  PERFECT_SCROLLBAR_CONFIG,
-  PerfectScrollbarConfigInterface,
-  PerfectScrollbarModule,
-} from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { DataTableComponent } from './components/data-table/data-table.component';
+import { FormInspectorComponent } from './components/form-inspector/form-inspector.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { MediaQueryStatusComponent } from './components/media-query-status/media-query-status.component';
+import { MenuThemeComponent } from './components/menu-theme/menu-theme.component';
 import { FooterMobileComponent } from './components/navigation/footer-mobile/footer-mobile.component';
 import { HeaderMobileComponent } from './components/navigation/header-mobile/header-mobile.component';
 import { SidenavComponent } from './components/navigation/sidenav/sidenav.component';
+import { ToolbarCrudSimplesComponent } from './components/toolbar-crud-simples/toolbar-crud-simples.component';
 import { CrudDlgApiComponent } from './heranca/crud-dlg-api/crud-dlg-api.component';
 import { FormDlgApiComponent } from './heranca/crud-dlg-api/form/form.component';
 import { IndexDlgApiComponent } from './heranca/crud-dlg-api/index/index.component';
 import { MaterialModule } from './material.module';
-import { MenuThemeComponent } from './components/menu-theme/menu-theme.component';
-
-import { DialogModule } from '@ngneat/dialog';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { NgxMatErrorsModule } from "ngx-mat-errors";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -52,9 +41,20 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgMaterialMultilevelMenuModule, // Import here
     PerfectScrollbarModule,
     NgxMatSelectSearchModule,
+    NgxMatErrorsModule,
+
+    ErrorTailorModule.forRoot({
+      errors: {
+        useValue: {
+          required: 'Este campo é obrigatório',
+          minlength: ({ requiredLength, actualLength }) => 
+                      `Esperado ${requiredLength} caracteres porém tem ${actualLength}`,
+          invalidAddress: error => `Endereço inválido`
+        }
+      }
+    }),
 
     DialogModule.forRoot(),
-
 
     CdkTableModule,
     CdkTreeModule,
@@ -69,6 +69,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MediaQueryStatusComponent,
     LoaderComponent,
     DataTableComponent,
+    FormInspectorComponent,
 
     CrudDlgApiComponent,
     IndexDlgApiComponent,
@@ -81,6 +82,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   exports: [
     FormsModule,
     ReactiveFormsModule,
+    NgxMatErrorsModule,
+    ErrorTailorModule,
 
     FooterMobileComponent,
     HeaderMobileComponent,
@@ -88,6 +91,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MediaQueryStatusComponent,
     LoaderComponent,
     DataTableComponent,
+    FormInspectorComponent,
 
     CrudDlgApiComponent,
     IndexDlgApiComponent,

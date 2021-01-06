@@ -25,7 +25,7 @@
 
   z-index: 9   !important;
   padding: 10px;
-
+  min-height: 340px;
 }
 
 .footer {
@@ -39,6 +39,20 @@
 
 .ngneat-dialog-content {
   // background-color: #7c7a7a;
-  height: 480px;
+  min-height: 340px;
 
 }
+
+.full-width {
+  width: 100%;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  font-size: 24px;
+}
+
+// ::ng-deep .mat-form-field {
+//   .mat-form-field-label {
+//       font-size: 18px;
+//   }
+// }
