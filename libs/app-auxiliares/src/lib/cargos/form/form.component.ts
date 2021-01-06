@@ -70,23 +70,27 @@ export class FormComponent extends FormDlgApiComponent implements OnInit, AfterV
 
 
   ngAfterViewInit() {
-    this.updateAtivo()
+    // this.updateAtivo()
     super.ngAfterViewInit();
   }
 
-  onChange(enable: boolean) {
-    if (enable) {
-      this.formCRUD.controls['isActive'].setValue(true);
-    } else {
-      this.formCRUD.controls['isActive'].setValue(false);
-    }
-    this.updateAtivo();
+  onMenuClick() {
+    console.log('Click do menu do Dlg');
   }
 
-  private updateAtivo() {
-    // console.log(this.formCRUD.controls['isActive'].value, this.formCRUD.controls['isActive'].value === 1);
-    this.active = this.active = this.formCRUD.controls['isActive'].value.toString() === 'true' ? 'Ativo' : 'Desativado';
-  }
+  // onChange(enable: boolean) {
+  //   if (enable) {
+  //     this.formCRUD.controls['isActive'].setValue(true);
+  //   } else {
+  //     this.formCRUD.controls['isActive'].setValue(false);
+  //   }
+  //   this.updateAtivo();
+  // }
+
+  // private updateAtivo() {
+  //   // console.log(this.formCRUD.controls['isActive'].value, this.formCRUD.controls['isActive'].value === 1);
+  //   this.active = this.active = this.formCRUD.controls['isActive'].value.toString() === 'true' ? 'Ativo' : 'Desativado';
+  // }
 
   fakeArray(length: number): Array<any> {
     if (length >= 0) {

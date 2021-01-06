@@ -60,7 +60,8 @@ export class IndexComponent
 
     const dialogRef = this.dialog.open(FormComponent, {
       closeButton: false,
-      draggable: true,
+      draggable: false,
+      height: '280',
       data: {
         id: registro.id,
         payload: registro,

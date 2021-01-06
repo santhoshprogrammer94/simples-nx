@@ -12,15 +12,15 @@ body {
   margin: 0;
 }
 
-// .mat-toolbar {
-//   min-height: 50px !important;
-//   height: 50px !important;
-// }
+.mat-toolbar {
+  min-height: 50px !important;
+  height: 50px !important;
+}
 
-// .mat-toolbar-row {
-//   min-height: 50px !important;
-//   height: 50px !important;
-// }
+.mat-toolbar-row {
+  min-height: 50px !important;
+  height: 50px !important;
+}
 
 .menu-spacer {
   flex: 1 1 auto;
@@ -132,7 +132,9 @@ table {
   // padding: 50px;
 }
 
-
+.full-width {
+  width: 100%;
+}
 
 .main-container {
   overflow-y: auto;
@@ -172,5 +174,5 @@ table {
   // color
   // scale or font-size
   font-size: 18px;
-  color: green;
+  // color: green;
 }

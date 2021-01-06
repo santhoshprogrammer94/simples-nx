@@ -54,7 +54,17 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       }
     }),
 
-    DialogModule.forRoot(),
+    DialogModule.forRoot({
+      // success: {
+      //   component: AppSuccessDialog
+      // },
+      // confirm: {
+      //   component: AppConfirmDialog
+      // },
+      // error: {
+      //   component: AppErrorDialog
+      // }
+    }),
 
     CdkTableModule,
     CdkTreeModule,

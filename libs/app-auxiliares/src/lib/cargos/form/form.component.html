@@ -1,76 +1,54 @@
-<div class="ngneat-dialog-content">
-  <div class="wrapper">
+<div class="wrapper ">
 
-    <div class="header">
-      <mat-toolbar class="mat-elevation-z9" color="primary">
-        <button mat-icon-button (click)="onMenuClick()">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <h1 class="example-app-name">{{titulo}}</h1>
-      </mat-toolbar>
-    </div>
-
-    <div class="content">
-
-      <form [formGroup]='formCRUD' errorTailor (keyup.escape)="onCancel()" (keydown.control.delete)="onDelete()">
-
-        <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="10px"
-          fxLayoutGap.xs="0">
-
-          <!-- <div class="item item-2" fxFlex="50%">
-            <mat-form-field class="full-width">
-              <input type="text" #inputId formControlName="id" matInput placeholder="id" cdkFocusRegionstart>
-            </mat-form-field>
-          </div> -->
-          <div class="item item-1" fxFlex="100%">
-            <mat-form-field class="full-width">
-
-              <mat-label>Descrição</mat-label>
-
-              <input type="text" #inputDescription formControlName="description" matInput placeholder="Description"
-                cdkFocusRegionstart [controlErrorAnchor]="nameError">
-                <mat-error><ng-template controlErrorAnchor #nameError="controlErrorAnchor"></ng-template></mat-error>
-
-              <!-- <mat-error ngx-mat-errors></mat-error> -->
-
-            </mat-form-field>
-          </div>
-
-        </div>
-
-
-
-
-        <div fxLayout fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="10px" fxLayoutGap.xs="0">
-
-          <div class="item item-4" fxFlex="20%">
-
-            <div fxLayout="row" fxLayoutAlign="start start">
-              <section class="example-section">
-                <div>
-                  <mat-slide-toggle formControlName="isActive" [checked]="1" (change)="onChange($event.checked)">
-                    {{active}}
-                  </mat-slide-toggle>
-                </div>
-              </section>
-            </div>
-
-          </div>
-        </div>
-
-      </form>
-
-    </div>
-
-    <app-form-inspector [form]="formCRUD"></app-form-inspector>
-
-    <div class="footer">
-      <mat-toolbar class="mat-elevation-z4" color="primary">
-        <span class="fill-space"></span>
-        <div class="toolbar-icon">
-          <mat-icon>account_circle</mat-icon>
-        </div>
-      </mat-toolbar>
-    </div>
+  <div class="header">
+    <mat-toolbar class="mat-elevation-z9" color="primary">
+      <button mat-icon-button (click)="onMenuClick()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1 class="example-app-name">{{titulo}}</h1>
+    </mat-toolbar>
   </div>
+
+  <div class="content">
+    
+    <form [formGroup]='formCRUD' errorTailor (keyup.escape)="onCancel()" (keydown.control.delete)="onDelete()">
+
+      <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="10px"
+        fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="100%">
+          <mat-form-field class="full-width">
+            <mat-label>Descrição</mat-label>
+            <input type="text" #inputDescription formControlName="description" matInput placeholder="Description"
+              cdkFocusRegionstart [controlErrorAnchor]="nameError">
+            <mat-error>
+              <ng-template controlErrorAnchor #nameError="controlErrorAnchor"></ng-template>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div fxLayout fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-4" fxFlex="100%">
+          <div fxLayout="row" fxLayoutAlign="start start">
+            <mat-checkbox formControlName="isActive">Ativo</mat-checkbox>
+          </div>
+        </div>
+      </div>
+      
+    </form>
+
+  </div>
+
+  <!-- <app-form-inspector [form]="formCRUD"></app-form-inspector> -->
+
+  <div class="footer">
+    <mat-toolbar class="mat-elevation-z4" color="primary">
+      <span class="fill-space"></span>
+      <div class="toolbar-icon">
+        <mat-icon>account_circle</mat-icon>
+      </div>
+    </mat-toolbar>
+  </div>
+
 </div>
