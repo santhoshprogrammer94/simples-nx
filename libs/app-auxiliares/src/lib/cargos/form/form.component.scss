@@ -1,7 +1,7 @@
-$height__main-toolbar: 64px;
+
 :host {
   display: block;
-  height: 450px;
+  height: 100%;
 
   &:after {
     right: 0;
@@ -24,7 +24,7 @@ $height__main-toolbar: 64px;
   overflow: auto;
 
   z-index: 9   !important;
-
+  padding: 10px;
 
 }
 
@@ -35,4 +35,10 @@ $height__main-toolbar: 64px;
   -webkit-box-shadow: 0px -4px 3px rgba(70, 70, 70, 0.45);
   -moz-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.35);
   box-shadow: 0px -4px 3px rgba(70, 70, 70, 0.25);
+}
+
+.ngneat-dialog-content {
+  // background-color: #7c7a7a;
+  height: 480px;
+
 }
