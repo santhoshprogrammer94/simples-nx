@@ -1,4 +1,4 @@
-<div class="wrapper " fxLayout="column" *ngIf="data$ | async as data; else loading">
+<div class="wrapper" fxLayout="column" *ngIf="data$ | async as data; else loading">
 
   <div class="header">
     <app-toolbar-crud-simples [title]="titulo" [localParams]="localParams" (refresh)="onRefresh($event)"
@@ -36,7 +36,7 @@
       <mat-toolbar-row>
         <span class="menu-spacer"></span>
         <mat-paginator #paginator [length]="(data.length)"
-          [pageSizeOptions]="[10, 3, 8, 15, 25, 50, 100, 200, 400, 600, 900, 1200]"
+          [pageSizeOptions]="[10, 3, 8, 15, 25, 50, 100, 200, 400, 600, 900, 1200]" (page)="onPaginateAPI()"
           showFirstLastButtons>
         </mat-paginator>
       </mat-toolbar-row>
