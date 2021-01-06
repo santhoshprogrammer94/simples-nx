@@ -34,6 +34,10 @@ import { IndexDlgApiComponent } from './heranca/crud-dlg-api/index/index.compone
 import { MaterialModule } from './material.module';
 import { MenuThemeComponent } from './components/menu-theme/menu-theme.component';
 
+import { DialogModule } from '@ngneat/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
@@ -41,11 +45,16 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
     FlexLayoutModule,
     NgMaterialMultilevelMenuModule, // Import here
     PerfectScrollbarModule,
     NgxMatSelectSearchModule,
+
+    DialogModule.forRoot(),
+
 
     CdkTableModule,
     CdkTreeModule,
@@ -70,6 +79,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ToolbarCrudSimplesComponent,
   ],
   exports: [
+    FormsModule,
+    ReactiveFormsModule,
+
     FooterMobileComponent,
     HeaderMobileComponent,
     SidenavComponent,

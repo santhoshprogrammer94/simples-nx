@@ -50,6 +50,8 @@
     "@nestjs/typeorm": "^7.1.1",
     "@nestjsx/crud": "^4.6.2",
     "@nestjsx/crud-typeorm": "^4.6.2",
+    "@ngneat/dialog": "^1.0.4",
+    "@ngneat/reactive-forms": "^1.5.1",
     "@ngrx/data": "^10.1.2",
     "@ngrx/effects": "^10.0.0",
     "@ngrx/entity": "^10.0.0",

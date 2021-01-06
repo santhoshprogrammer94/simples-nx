@@ -1,8 +1,19 @@
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { DialogService } from '@ngneat/dialog';
 import { Store } from '@ngrx/store';
 import { Option, ThemeService } from '@simples/app-core';
 import { NavigationFacade } from '@simples/app-store';
 import { Observable, Subject, timer } from 'rxjs';
+import { HelloWorldComponent } from './hello-world.component';
 
 @Component({
   selector: 'simples-nx',
@@ -28,6 +39,7 @@ export class NxComponent implements OnInit, AfterViewInit, OnDestroy {
     private store: Store,
     private navFacade: NavigationFacade,
     private cdr: ChangeDetectorRef,
+    private dialog: DialogService,
     private themeService: ThemeService
   ) {}
 
@@ -48,6 +60,11 @@ export class NxComponent implements OnInit, AfterViewInit, OnDestroy {
       return new Array(length);
     }
   }
+
+  open() {
+    const dialogRef = this.dialog.open(HelloWorldComponent);
+  }
+
   themeChangeHandler(themeToSet) {
     this.themeService.setTheme(themeToSet);
   }

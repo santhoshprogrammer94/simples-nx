@@ -1,26 +1,15 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  DoCheck,
   Inject,
   Injector,
-  OnDestroy,
   OnInit,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs/internal/Subscription';
+import { DialogService } from '@ngneat/dialog';
 
 import { BaseComponent } from '../../inheritance.component';
-import { CrudDlgApiState } from '../crud-dialogo-api-state';
-
-// import {
-//   Organizacao,
-//   OrganizacaoStoreFacade
-// } from '@solsig/sig-stores';
 
 @Component({
   selector: 'lib-index',
@@ -28,21 +17,16 @@ import { CrudDlgApiState } from '../crud-dialogo-api-state';
   styleUrls: ['./index.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IndexDlgApiComponent
-  extends BaseComponent
-  implements OnInit {
+export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   protected cdRef: ChangeDetectorRef;
-  protected dialog: MatDialog;
-  protected store$: Store<CrudDlgApiState>;
-  protected url: string;
-  protected id: number;
   protected router: Router;
+  protected dialog: DialogService;
 
-  mySub: Subscription;
-  protected subscription: Subscription;
-
+  operation = 'index';
   constructor(injector: Injector, @Inject('environment') env?: any) {
     super(injector, env);
+
+    this.dialog = this.injectorObj.get(DialogService);
     if (!this.isDev) {
     }
   }
@@ -65,6 +49,4 @@ export class IndexDlgApiComponent
   }
 
   onCallDate(data): void {}
-
-
 }

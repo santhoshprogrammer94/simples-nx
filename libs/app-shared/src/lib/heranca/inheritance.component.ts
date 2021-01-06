@@ -51,6 +51,7 @@ export class BaseComponent
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
+    console.log('base ngAfterViewInit')
     this.ngDoCheck();
   }
 
