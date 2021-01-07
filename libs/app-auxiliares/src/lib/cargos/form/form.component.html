@@ -1,16 +1,16 @@
-<div class="wrapper ">
 
+
+<div class="wrapper ">
   <div class="header">
     <mat-toolbar class="mat-elevation-z9" color="primary">
-      <button mat-icon-button (click)="onMenuClick()">
+      <button mat-icon-button>
         <mat-icon>menu</mat-icon>
       </button>
-      <h1 class="example-app-name">{{titulo}}</h1>
+      <h1 class="example-app-name">{{ 'Dialogo Teste' }}</h1>
     </mat-toolbar>
   </div>
 
   <div class="content">
-    
     <form [formGroup]='formCRUD' errorTailor (keyup.escape)="onCancel()" (keydown.control.delete)="onDelete()">
 
       <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="10px"
@@ -37,11 +37,7 @@
       </div>
       
     </form>
-
   </div>
-
-  <!-- <app-form-inspector [form]="formCRUD"></app-form-inspector> -->
-
   <div class="footer">
     <mat-toolbar class="mat-elevation-z4" color="primary">
       <span class="fill-space"></span>
@@ -50,5 +46,4 @@
       </div>
     </mat-toolbar>
   </div>
-
 </div>

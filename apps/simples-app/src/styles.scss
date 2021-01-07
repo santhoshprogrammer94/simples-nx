@@ -170,9 +170,32 @@ table {
 
 }
 
+.main-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100vh !important;
+  position: relative;
+  padding: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  // background-color: #dcdcdc;
+  // margin: 25px;
+  z-index: 20;
+}
+
+sis-toolbar-crud-simples {
+  padding: 0px;
+  z-index: 99990;
+  background-color: red;
+}
+
 .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label:not(.mat-empty):not(.mat-form-field-empty) {
   // color
   // scale or font-size
   font-size: 18px;
   // color: green;
+}
+
+.ngneat-dialog-content {
+  max-height: unset;
 }

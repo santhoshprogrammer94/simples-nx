@@ -53,21 +53,3 @@ mat-sidenav{
 
 }
 
-.main-container {
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: 100vh !important;
-  position: relative;
-  padding: 10px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  // background-color: #dcdcdc;
-  // margin: 25px;
-  z-index: 20;
-}
-
-sis-toolbar-crud-simples {
-  padding: 0px;
-  z-index: 99990;
-  background-color: red;
-}
