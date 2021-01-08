@@ -1,4 +1,8 @@
 {
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  },
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
@@ -11,8 +15,8 @@
     "target": "es2015",
     "module": "esnext",
     "lib": ["es2017", "dom"],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
+    "skipLibCheck": false,
+    "skipDefaultLibCheck": false,
     "baseUrl": ".",
     "paths": {
       "@api-core": ["libs/api-core/src/index.ts"],

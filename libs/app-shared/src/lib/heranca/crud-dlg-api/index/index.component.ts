@@ -12,8 +12,9 @@ import { DialogService } from '@ngneat/dialog';
 import { BaseComponent } from '../../inheritance.component';
 
 @Component({
-  selector: 'lib-index',
-  templateUrl: './index.component.html',
+  selector: ' html 2',
+  template: 'Inheritance: See in logs',
+
   styleUrls: ['./index.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -27,16 +28,14 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     super(injector, env);
 
     this.dialog = this.injectorObj.get(DialogService);
+
     if (!this.isDev) {
     }
   }
 
   ngOnInit(): void {}
 
-  onCallForm(data): void {
-    if (this.isDev) {
-    }
-  }
+
 
   onPagamentoForm(data): void {
     if (this.isDev) {

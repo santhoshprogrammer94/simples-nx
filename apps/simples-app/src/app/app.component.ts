@@ -31,6 +31,7 @@ import { navigation } from './menu';
 })
 export class AppComponent implements OnInit, OnDestroy {
   appitems = navigation;
+  title = 'simples-app'
 
   @ViewChild('sidenav') sidenav: MatSidenav;
   navigationLoading$: Observable<boolean>;

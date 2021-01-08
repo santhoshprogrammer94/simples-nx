@@ -1,9 +1,14 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, Inject, Injector, OnInit } from '@angular/core';
-import { DialogService } from '@ngneat/dialog';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Injector,
+  OnInit,
+} from '@angular/core';
 import { IndexDlgApiComponent } from '@simples/app-shared';
 import { Cargo } from '@simples/shared/interfaces';
 import { interval, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 import { CargosCollectionService } from '../cargos.service';
 import { FormComponent } from '../form/form.component';
@@ -22,7 +27,7 @@ export class IndexComponent
   localParams: any;
   data$: Observable<Cargo[]>;
   configuration = new Configs().configuration;
-  time: any;
+  selectedId = 0;
 
   displayedColumns: string[] = [
     'id',
@@ -45,49 +50,53 @@ export class IndexComponent
   }
 
   ngOnInit() {
-    interval(1000)
-      .pipe(
-        tap((e) => console.log('Decorator', e)),
-        // @ts-ignore  <- If i add this the warning will gone but i dont want to add this every rxjs later.
-        this.unsubsribeOnDestroy
-      )
-      .subscribe();
+    this.onRefresh();
+  }
+
+  onRefresh() {
+    console.log('refresh da index');
+    this.dataService.load();
   }
 
   onDblClick(registro: Cargo) {
-
     this.operation = 'edit';
-
-    const dialogRef = this.dialog.open(FormComponent, {
-      closeButton: false,
-      draggable: false,
-      height: '280',
-      data: {
-        id: registro.id,
-        payload: registro,
-        operation: this.operation
-      }
-    });
-
-    dialogRef.afterClosed$.subscribe(result => {
-      console.log(`After dialog has been closed ${result}`);
-    });        
+    this.selectedId = registro.id;
+    this.onCallForm(registro);
   }
 
-  onRefresh() {}
-
   onAdd() {
-    console.log('abrindo dialogo');
+    this.operation = 'new';
+    this.onCallForm();
+  }
+
+  onCallForm(registro?: Cargo): void {
     const dialogRef = this.dialog.open(FormComponent, {
       closeButton: false,
+      enableClose: false,
+      draggable: true,
+      height: '280',
+      backdrop: true,
       data: {
-        teste: 'Testando passar dados'
-      }
+        id: this.selectedId,
+        payload: registro,
+        operation: this.operation,
+      },
     });
 
-    dialogRef.afterClosed$.subscribe(result => {
-      console.log(`After dialog has been closed ${result}`);
-    });    
+    dialogRef.afterClosed$.subscribe((result) => {
+      if (this.isDev) {
+        console.log(this.operation, 'dados', registro);
+      }
+
+      if (result.operation === 'new') {
+        this.dataService.add(result.payload);
+      }
+
+      if (result.operation === 'edit') {
+        result.payload.id = this.selectedId;
+        this.dataService.update(result.payload);
+      }
+    });
   }
 
   onClickSearch() {}
@@ -95,4 +104,6 @@ export class IndexComponent
   onCancelSearch() {}
 
   onFilter(param) {}
+
+  onPaginateAPI() {}
 }

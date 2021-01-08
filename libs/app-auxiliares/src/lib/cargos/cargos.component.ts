@@ -24,13 +24,13 @@ export class CargosComponent
   titulo = 'Cargos';
 
   constructor(
-    private dataService: CargosCollectionService,
+    // private dataService: CargosCollectionService,
     injector: Injector,
     @Inject('environment') env?: any
   ) {
     super(injector, env);
 
-    this.data$ = this.dataService.filteredEntities$;
+    // this.data$ = this.dataService.filteredEntities$;
 
     this.onRefresh();
   }
@@ -38,20 +38,19 @@ export class CargosComponent
   ngOnInit(): void {}
 
   onRefresh(params?) {
-    this.dataService.load();
   }
 
-  onSearch(text: string): void {
-    this.dataService.setFilter(text);
-  }
+  // onSearch(text: string): void {
+  //   // this.dataService.setFilter(text);
+  // }
 
-  onSubmit(issue: any): void {
-    this.dataService.add(issue);
-  }
+  // onSubmit(issue: any): void {
+  //   // this.dataService.add(issue);
+  // }
 
-  reload() {
-    this.log.info('Reload from cargos.component.ts');
-  }
+  // reload() {
+  //   this.log.info('Reload from cargos.component.ts');
+  // }
 
   onActivate(elementRef) {
     if (!elementRef) {

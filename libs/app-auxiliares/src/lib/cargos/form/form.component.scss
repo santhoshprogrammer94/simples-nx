@@ -23,16 +23,18 @@ $height__main-toolbar: 64px;
   overflow: auto;
 
   z-index: 9 !important;
-  min-height: 178px;
+  // min-height: 178px;
   padding: 10px;
 }
 
-.footer {
+.footer-base {
   z-index: 99;
-  border-top: 2px solid #7c7a7a;
-  -webkit-box-shadow: 0px -4px 3px rgba(70, 70, 70, 0.45);
-  -moz-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.35);
-  box-shadow: 0px -4px 3px rgba(70, 70, 70, 0.25);
+  height: 50px;
+  padding: 10px;
 }
 
 p { color: blue;}
+
+cdk-overlay-container, .cdk-overlay-pane {
+  z-index: 9999 !important;
+}

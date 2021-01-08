@@ -1,11 +1,5 @@
 <mat-toolbar color="primary" class="crud-toolbar mat-elevation-z4">
 
-  <!-- <button *ngIf="showButton" mat-icon-button fxShow="true">
-    <mat-icon>menu</mat-icon>
-  </button> -->
-  <!-- <button mat-button *ngIf="showLeftMenu" class="more-btn" [matMenuTriggerFor]="matMenuIndex">
-    <mat-icon>menu</mat-icon>
-  </button> -->
   <button mat-icon-button [matMenuTriggerFor]="matMenuIndex" *ngIf="showLeftMenu">
     <mat-icon>menu</mat-icon>
   </button>
@@ -22,7 +16,7 @@
       <span fxHide fxShow.gt-sm> {{labelCancel}}</span>
     </button>
 
-    <button class="dirSpace"  mat-raised-button (click)="this.save.emit($event)">
+    <button class="dirSpace" mat-raised-button (click)="this.save.emit($event)">
       <mat-icon>save</mat-icon>
       <span fxHide fxShow.gt-sm>{{labelConfirmar}}</span>
     </button>
@@ -54,8 +48,8 @@
 
     <mat-form-field *ngIf="searching" class="datepicker" floatLabel="never">
       <input matInput #inputBuscar type="text" autocomplete="nope" placeholder="Pesquisar"
-        (keyup)="applyFilter($event.target.value)" (keydown.control.f3)="onClickSearch()"
-        (keyup.enter)="filterByAPI($event.target.value)">
+        (keyup)="applyFilter(inputBuscar.value)" (keydown.control.f3)="onClickSearch()"
+        (keyup.enter)="filterByAPI(inputBuscar.value)">
       <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
         <mat-icon>close</mat-icon>
       </button>
@@ -135,12 +129,12 @@
     </button>
 
 
-  <span *ngIf="showAddButton">
-    <button  class="dirSpace" mat-raised-button (click)="this.add.emit($event)">
-      <mat-icon>add</mat-icon>
-      <span fxHide fxShow.gt-sm> {{labelAdd}}</span>
-    </button>
-  </span>
+    <span *ngIf="showAddButton">
+      <button class="dirSpace" mat-raised-button (click)="this.add.emit($event)">
+        <mat-icon>add</mat-icon>
+        <span fxHide fxShow.gt-sm> {{labelAdd}}</span>
+      </button>
+    </span>
     <!-- <button *ngIf="showMenuButton"
     mat-button class="more-btn"
     [matMenuTriggerFor]="matMenuMore">
@@ -148,9 +142,7 @@
     </button> -->
 
     <span *ngIf="showMenuButton">
-      <button
-      mat-button class="more-btn"
-      [matMenuTriggerFor]="matMenuMore">
+      <button mat-button class="more-btn" [matMenuTriggerFor]="matMenuMore">
         <mat-icon>more_vert</mat-icon>
       </button>
     </span>

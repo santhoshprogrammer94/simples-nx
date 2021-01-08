@@ -1,12 +1,19 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, Inject, Injector, OnInit } from '@angular/core';
-import { FormBuilder, NgValidatorsErrors, FormGroup, FormControl } from '@ngneat/reactive-forms';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Injector,
+  OnInit,
+} from '@angular/core';
 import { DialogRef, DialogService } from '@ngneat/dialog';
+import { FormBuilder, FormGroup } from '@ngneat/reactive-forms';
 
 import { BaseComponent } from '../../inheritance.component';
 
 // import { State, TeleiroService } from 'projects/lib-core/src/public_api';
 @Component({
-  selector: 'sis-form-crud-dlg',
+  selector: ' html 3',
   template: 'Inheritance: See in logs',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -25,7 +32,7 @@ export class FormDlgApiComponent
   constructor(
     injector: Injector,
     @Inject('environment') env?: any,
-    public ref?: DialogRef
+    public dlgRef?: DialogRef
   ) {
     super(injector, env);
 
@@ -46,15 +53,15 @@ export class FormDlgApiComponent
         this.formCRUD.controls[i].markAsTouched();
       }
     } else if (this.operation === 'edit') {
-      this.titulo = `Editando Registro ${this.ref.data.id}`;
-      
+      this.titulo = `Editando Registro ${this.dlgRef.data.id}`;
+
       for (const i in this.formCRUD.controls) {
         this.formCRUD.controls[i].markAsTouched();
       }
-      this.formCRUD.patchValue(this.ref.data.payload);
+      this.formCRUD.patchValue(this.dlgRef.data.payload);
     }
 
-    console.log('operation', this.operation, this.ref.data.payload);
+    console.log('operation', this.operation, this.dlgRef.data.payload);
   }
 
   // ngAfterViewInit() {
@@ -63,7 +70,7 @@ export class FormDlgApiComponent
   //   this.ngDoCheck();
   // }
 
-  onSave($event) {
+  onSave($event?: any) {
     // tslint:disable-next-line:forin
     for (const i in this.formCRUD.controls) {
       this.formCRUD.controls[i].enable();
@@ -72,6 +79,11 @@ export class FormDlgApiComponent
     //   payload: this.formCRUD.value,
     //   operation: this.operation,
     // });
+
+    this.dlgRef.close({
+      payload: this.formCRUD.value,
+      operation: this.operation,
+    });
   }
 
   onDelete() {
@@ -96,5 +108,6 @@ export class FormDlgApiComponent
   onCancel(): void {
     this.formCRUD.reset();
     this.operation = 'index';
+    this.dlgRef.close();
   }
 }

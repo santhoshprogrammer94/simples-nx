@@ -1,25 +1,9 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  Injector,
-  OnInit,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Inject, Injector, OnDestroy, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { DialogRef } from '@ngneat/dialog';
-import {
-  FormControl,
-  FormGroup,
-  NgValidatorsErrors,
-} from '@ngneat/reactive-forms';
-
+import { FormControl, FormGroup, NgValidatorsErrors } from '@ngneat/reactive-forms';
 import { FormDlgApiComponent } from '@simples/app-shared';
 import { Cargo } from '@simples/shared/interfaces';
-
-export const errorMessages = {
-  DESCRICAO: 'Campo obrigatório e precisa ter entre 3 a 255 caracteres'
-};
 
 @Component({
   selector: 'simples-form',
@@ -27,18 +11,18 @@ export const errorMessages = {
   styleUrls: ['./form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormComponent extends FormDlgApiComponent implements OnInit, AfterViewInit {
-  active = '99';
-  errors = errorMessages;
+export class FormComponent
+  extends FormDlgApiComponent
+  implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private injector: Injector,
     @Inject('env') public env,
-    public ref: DialogRef
+    public dlgRef: DialogRef
   ) {
-    super(injector, env, ref);
+    super(injector, env, dlgRef);
 
-    this.operation = ref.data.operation;
+    this.operation = dlgRef.data.operation;
 
     this.formCRUD = new FormGroup<Cargo, NgValidatorsErrors>(
       {
@@ -53,24 +37,19 @@ export class FormComponent extends FormDlgApiComponent implements OnInit, AfterV
         // createdAt: new FormControl(null),
         // updatedAt: new FormControl(null),
         // deletedAt: new FormControl(null),
-        isActive: new FormControl(null),
+        isActive: new FormControl(true),
         // isDeleted: new FormControl(null),
       },
       { updateOn: 'change' }
     );
-
-    // (this.formCRUD.controls.id as FormControl<number>).errors$.subscribe((e) =>
-    //   console.log('erro', e)
-    // );
   }
 
   ngOnInit() {
     super.ngOnInit();
+    // console.log(this.dlgRef);
   }
 
-
   ngAfterViewInit() {
-    // this.updateAtivo()
     super.ngAfterViewInit();
   }
 
@@ -78,23 +57,15 @@ export class FormComponent extends FormDlgApiComponent implements OnInit, AfterV
     console.log('Click do menu do Dlg');
   }
 
-  // onChange(enable: boolean) {
-  //   if (enable) {
-  //     this.formCRUD.controls['isActive'].setValue(true);
-  //   } else {
-  //     this.formCRUD.controls['isActive'].setValue(false);
-  //   }
-  //   this.updateAtivo();
-  // }
-
-  // private updateAtivo() {
-  //   // console.log(this.formCRUD.controls['isActive'].value, this.formCRUD.controls['isActive'].value === 1);
-  //   this.active = this.active = this.formCRUD.controls['isActive'].value.toString() === 'true' ? 'Ativo' : 'Desativado';
-  // }
-
   fakeArray(length: number): Array<any> {
     if (length >= 0) {
       return new Array(length);
     }
+  }
+
+  ngOnDestroy(): void {
+    // console.log('Destruíndo formulario');
+    // this.ref.close();
+    super.ngOnDestroy();
   }
 }

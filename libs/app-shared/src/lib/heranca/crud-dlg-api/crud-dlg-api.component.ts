@@ -12,9 +12,8 @@ import {
 import { BaseComponent } from '../inheritance.component';
 
 @Component({
-  selector: 'solsig-crud-dlg-api',
-  templateUrl: './crud-dlg-api.component.html',
-  styleUrls: ['./crud-dlg-api.component.scss'],
+  selector: ' html 1',
+  template: 'Inheritance: See in logs',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CrudDlgApiComponent

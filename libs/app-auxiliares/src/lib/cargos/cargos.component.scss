@@ -7,3 +7,7 @@ $height__main-toolbar: 64px;
     right: 0;
   }
 }
+
+cdk-overlay-container, .cdk-overlay-pane {
+  z-index: 9999 !important;
+}

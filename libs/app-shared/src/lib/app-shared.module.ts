@@ -9,6 +9,7 @@ import { DialogModule } from '@ngneat/dialog';
 import { ErrorTailorModule } from '@ngneat/error-tailor';
 import { MultilevelMenuService, NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
 import { NgxMaskModule } from 'ngx-mask';
+import { NgxMatErrorsModule } from 'ngx-mat-errors';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
@@ -20,12 +21,12 @@ import { MenuThemeComponent } from './components/menu-theme/menu-theme.component
 import { FooterMobileComponent } from './components/navigation/footer-mobile/footer-mobile.component';
 import { HeaderMobileComponent } from './components/navigation/header-mobile/header-mobile.component';
 import { SidenavComponent } from './components/navigation/sidenav/sidenav.component';
+import { ToolbarCrudDlgComponent } from './components/toolbar-crud-dlg/toolbar-crud-dlg.component';
 import { ToolbarCrudSimplesComponent } from './components/toolbar-crud-simples/toolbar-crud-simples.component';
 import { CrudDlgApiComponent } from './heranca/crud-dlg-api/crud-dlg-api.component';
 import { FormDlgApiComponent } from './heranca/crud-dlg-api/form/form.component';
 import { IndexDlgApiComponent } from './heranca/crud-dlg-api/index/index.component';
 import { MaterialModule } from './material.module';
-import { NgxMatErrorsModule } from "ngx-mat-errors";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -47,14 +48,32 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       errors: {
         useValue: {
           required: 'Este campo é obrigatório',
-          minlength: ({ requiredLength, actualLength }) => 
-                      `Esperado ${requiredLength} caracteres porém tem ${actualLength}`,
-          invalidAddress: error => `Endereço inválido`
-        }
-      }
+          minlength: ({ requiredLength, actualLength }) =>
+            `Esperado ${requiredLength} caracteres porém tem ${actualLength}`,
+          invalidAddress: (error) => `Endereço inválido`,
+        },
+      },
     }),
 
     DialogModule.forRoot({
+      sizes: {
+        sm: {
+          width: '300px',
+          minHeight: '250px'
+        },
+        md: {
+          width: '60vw',
+          height: '60vh'
+        },
+        lg: {
+          width: '90vw',
+          height: '90vh'
+        },
+        fullScreen: {
+          width: '100vw',
+          height: '100vh'
+        }
+      }
       // success: {
       //   component: AppSuccessDialog
       // },
@@ -88,6 +107,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MenuThemeComponent,
 
     ToolbarCrudSimplesComponent,
+    ToolbarCrudDlgComponent,
   ],
   exports: [
     FormsModule,
@@ -110,6 +130,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MenuThemeComponent,
 
     ToolbarCrudSimplesComponent,
+    ToolbarCrudDlgComponent,
   ],
 
   providers: [
