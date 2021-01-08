@@ -1,18 +1,11 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  Injector,
-  OnInit,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Inject, Injector, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { IndexDlgApiComponent } from '@simples/app-shared';
 import { Cargo } from '@simples/shared/interfaces';
-import { interval, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { CargosCollectionService } from '../cargos.service';
 import { FormComponent } from '../form/form.component';
-import { Configs } from './configs';
 
 @Component({
   selector: 'simples-index',
@@ -24,10 +17,12 @@ export class IndexComponent
   extends IndexDlgApiComponent
   implements OnInit, AfterViewInit {
   titulo = 'Cargos';
-  localParams: any;
-  data$: Observable<Cargo[]>;
-  configuration = new Configs().configuration;
   selectedId = 0;
+
+  localParams: any;
+
+  data$: Observable<Cargo[]>;
+  
 
   displayedColumns: string[] = [
     'id',
@@ -52,9 +47,20 @@ export class IndexComponent
   ngOnInit() {
     this.onRefresh();
   }
+ 
+  ngAfterViewInit() {
+    // super.ngAfterViewInit();
+
+    this.data$.subscribe((data: Cargo[]) => {
+      if (data.length <= 0) {
+        return;
+      }
+      console.log(data);
+      this.unsubsribeOnDestroy;
+    })
+  }
 
   onRefresh() {
-    console.log('refresh da index');
     this.dataService.load();
   }
 
@@ -70,11 +76,13 @@ export class IndexComponent
   }
 
   onCallForm(registro?: Cargo): void {
+
+
     const dialogRef = this.dialog.open(FormComponent, {
       closeButton: false,
       enableClose: false,
       draggable: true,
-      height: '280',
+      height: '240',
       backdrop: true,
       data: {
         id: this.selectedId,
@@ -84,18 +92,21 @@ export class IndexComponent
     });
 
     dialogRef.afterClosed$.subscribe((result) => {
+
       if (this.isDev) {
-        console.log(this.operation, 'dados', registro);
+        console.log('operation', this.operation, 'dados', result);
       }
 
-      if (result.operation === 'new') {
+      if (result?.operation === 'new') {
         this.dataService.add(result.payload);
       }
 
-      if (result.operation === 'edit') {
+      if (result?.operation === 'edit') {
         result.payload.id = this.selectedId;
         this.dataService.update(result.payload);
       }
+
+      this.operation = 'index';
     });
   }
 

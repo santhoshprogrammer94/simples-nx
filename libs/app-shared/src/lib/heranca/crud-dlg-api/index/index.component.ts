@@ -5,7 +5,11 @@ import {
   Inject,
   Injector,
   OnInit,
+  ViewChild,
 } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { DialogService } from '@ngneat/dialog';
 
@@ -24,6 +28,19 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   protected dialog: DialogService;
 
   operation = 'index';
+
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatTable) table: MatTable<any>;
+  // @ViewChild(ToolbarCrudSimplesComponent)
+  // tbCrud: ToolbarCrudSimplesComponent;
+  // @ViewChild(ToolbarInteracoesComponent)
+  // tbInteracao: ToolbarInteracoesComponent;
+
+  dataSource = new MatTableDataSource([]);
+
+
   constructor(injector: Injector, @Inject('environment') env?: any) {
     super(injector, env);
 
@@ -33,19 +50,20 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  
+  // ngOnInit(): void {
+  //   this.
+  // }
 
+  // onPagamentoForm(data): void {
+  //   if (this.isDev) {
+  //   }
+  // }
 
+  // onCallNewForm(data): void {
+  //   if (this.isDev) {
+  //   }
+  // }
 
-  onPagamentoForm(data): void {
-    if (this.isDev) {
-    }
-  }
-
-  onCallNewForm(data): void {
-    if (this.isDev) {
-    }
-  }
-
-  onCallDate(data): void {}
+  // onCallDate(data): void {}
 }
