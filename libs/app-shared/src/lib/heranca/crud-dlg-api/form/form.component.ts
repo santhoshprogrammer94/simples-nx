@@ -75,15 +75,17 @@ export class FormDlgApiComponent
     for (const i in this.formCRUD.controls) {
       this.formCRUD.controls[i].enable();
     }
-    // this.dialogRef.close({
-    //   payload: this.formCRUD.value,
-    //   operation: this.operation,
-    // });
+    if (!this.formCRUD.valid) {
+      if (this.isDev) {
+        console.log('Formulário inválido', this.formCRUD.value);
+      }
+      return;
+    }
 
     this.dlgRef.close({
       payload: this.formCRUD.value,
       operation: this.operation,
-    });
+    });   
   }
 
   onDelete() {

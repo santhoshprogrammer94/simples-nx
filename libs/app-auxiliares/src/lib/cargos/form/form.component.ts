@@ -53,6 +53,14 @@ export class FormComponent
     super.ngAfterViewInit();
   }
 
+
+  onCancel() {
+    this.dlgRef.close({
+      payload: null,
+      operation: this.operation,
+    });    
+  }
+
   onMenuClick() {
     console.log('Click do menu do Dlg');
   }

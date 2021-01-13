@@ -10,6 +10,7 @@ export const {
 } = new EntitySelectorsFactory().create<Cargo>('cargos');
 
 export interface CargosStats {
+  error: any;
   total: number;
   resolved: number;
 }

@@ -8,9 +8,13 @@ import { CargosService } from './cargos.service';
   model: {
     type: CargosEntity,
   },
+
   query: {
-    limit: 5,
-    cache: 2000,
+    limit: 35,
+    // cache: 2000,
+    // alwaysPaginate: true,
+    maxLimit: 1000,
+    sort: [{ field: 'id', order: 'DESC' }],
   },
   params: {
     id: {
@@ -29,3 +33,13 @@ export class CargosController implements CrudController<CargosEntity> {
     return this.service.getData();
   }
 }
+
+/*
+
+   alwaysPaginate: true,
+    limit: 10,
+    sort: [
+      { field: 'id', order: 'DESC' },
+    ],
+
+*/

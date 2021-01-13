@@ -1,4 +1,11 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, Inject, Injector, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Injector,
+  OnInit,
+} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { IndexDlgApiComponent } from '@simples/app-shared';
 import { Cargo } from '@simples/shared/interfaces';
@@ -22,7 +29,7 @@ export class IndexComponent
   localParams: any;
 
   data$: Observable<Cargo[]>;
-  
+  dataSource: Cargo[];
 
   displayedColumns: string[] = [
     'id',
@@ -41,27 +48,48 @@ export class IndexComponent
   ) {
     super(injector, env);
 
+    if (this.isDev) {
+      console.log('constructor', 'IndexComponent');
+    }
+
     this.data$ = this.dataService.filteredEntities$;
   }
 
   ngOnInit() {
-    this.onRefresh();
+    if (this.isDev) {
+      console.log('ngOnInit', 'IndexComponent');
+    }
   }
- 
+
   ngAfterViewInit() {
     // super.ngAfterViewInit();
+    if (this.isDev) {
+      console.log('ngAfterViewInit', 'IndexComponent');
+    }
+    this.onRefresh();
 
-    this.data$.subscribe((data: Cargo[]) => {
-      if (data.length <= 0) {
-        return;
-      }
-      console.log(data);
-      this.unsubsribeOnDestroy;
-    })
   }
 
-  onRefresh() {
+  onRefresh(params?: any) {
+    if (this.isDev) {
+      console.log('onRefresh', 'IndexComponent');
+    }
     this.dataService.load();
+    if (this.operation !== 'index') {
+      return;
+    }
+
+    this.subscriptions.push(
+      this.data$.subscribe((data: Cargo[]) => {
+        if (data.length <= 0) {
+          return;
+        }
+        if (this.isDev) {
+          console.log('Subscribe', 'IndexComponent', data);
+        }
+        this.unsubsribeOnDestroy;
+      })
+    );
   }
 
   onDblClick(registro: Cargo) {
@@ -76,8 +104,6 @@ export class IndexComponent
   }
 
   onCallForm(registro?: Cargo): void {
-
-
     const dialogRef = this.dialog.open(FormComponent, {
       closeButton: false,
       enableClose: false,
@@ -92,10 +118,13 @@ export class IndexComponent
     });
 
     dialogRef.afterClosed$.subscribe((result) => {
-
       if (this.isDev) {
         console.log('operation', this.operation, 'dados', result);
       }
+
+      // if (!result.payload) {
+      //   return;
+      // }
 
       if (result?.operation === 'new') {
         this.dataService.add(result.payload);

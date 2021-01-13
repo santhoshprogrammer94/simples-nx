@@ -38,7 +38,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   // @ViewChild(ToolbarInteracoesComponent)
   // tbInteracao: ToolbarInteracoesComponent;
 
-  dataSource = new MatTableDataSource([]);
+  // dataSource = new MatTableDataSource([]);
 
 
   constructor(injector: Injector, @Inject('environment') env?: any) {
