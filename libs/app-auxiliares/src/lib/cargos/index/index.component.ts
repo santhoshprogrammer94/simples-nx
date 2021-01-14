@@ -78,7 +78,7 @@ export class IndexComponent
 
   onRefresh(params?: any) {
     if (this.isDev) {
-      console.log('onRefresh', 'IndexComponent', params);
+      console.log('onRefresh', 'IndexComponent', this.params);
     }
 
     this.dataService

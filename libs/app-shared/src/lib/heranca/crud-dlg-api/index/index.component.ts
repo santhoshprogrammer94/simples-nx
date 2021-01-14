@@ -87,6 +87,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
 
   setParams() {
     this.params = JSON.parse(localStorage.getItem(this.localParams));
+    console.log(!this.params);
 
     if (!this.params) {
       this.params = {};
@@ -96,6 +97,8 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
       if (this.paginator) {
         this.params.page = this.paginator.pageIndex;
         this.params.limit = this.paginator.pageSize;
+      } else {
+        console.log('sem paginator');
       }
     }
 
