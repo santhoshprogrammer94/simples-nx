@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 import { CargosCollectionService } from '../cargos.service';
 import { FormComponent } from '../form/form.component';
+import { Configs } from './configs';
 
 @Component({
   selector: 'simples-index',
@@ -38,6 +39,7 @@ export class IndexComponent
   ];
 
   dataSource = new MatTableDataSource<Cargo[]>();
+  configuration = new Configs().configuration;
 
   constructor(
     private injector: Injector,
@@ -57,7 +59,7 @@ export class IndexComponent
     if (!this.params) {
       this.initParams();
     }
-    
+
     if (this.isDev) {
       console.log('constructor', 'IndexComponent', this.params);
     }
@@ -94,11 +96,9 @@ export class IndexComponent
       console.log('onRefresh', 'IndexComponent', this.params);
     }
 
-    this.dataService
-      .getWithQuery(this.params)
-      .subscribe((data) => {
-        console.log('dados', data);
-      });
+    this.dataService.getWithQuery(this.params).subscribe((data) => {
+      console.log('dados', data);
+    });
   }
 
   onDblClick(registro: Cargo) {
@@ -156,9 +156,9 @@ export class IndexComponent
 
   onPaginateAPI() {
     super.onPaginateAPI();
-    
+
     this.dataService.clearCache();
-    
+
     this.onRefresh();
     this.ngDoCheck();
   }

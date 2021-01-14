@@ -7,20 +7,13 @@
   <span *ngIf="dataSource.filteredData.length || showTable" class="scroll-x">
     <div fxFlex="100" class="container" class="table-container mat-elevation-z3">
       <table mat-table [dataSource]="dataSource" [ngStyle]="{'background': backgroundColor}" matSort
-        [matSortActive]="actualActive" [matSortDirection]="actualDirection"
-        cdkDropListGroup>
+        [matSortActive]="actualActive" [matSortDirection]="actualDirection" cdkDropListGroup>
         <ng-container *ngFor="let item of config.columns; let i = index" [matColumnDef]="item.columnRef">
 
           <ng-container *ngIf="item.sorted && item.type !== TYPE_CHECKBOX">
             <th mat-header-cell *matHeaderCellDef [ngStyle]="item.type == TYPE_ACTIONS ? {'width': '40px'} : {}"
               mat-sort-header cdkDropList cdkDropListLockAxis="x" cdkDropListOrientation="horizontal"
-
-              (cdkDropListDropped)="dropListDropped($event, i)"
-        cdkDrag
-        (cdkDragStarted)="dragStarted($event, i)"
-
-
-              >
+              (cdkDropListDropped)="dropListDropped($event, i)" cdkDrag (cdkDragStarted)="dragStarted($event, i)">
               {{ item.nameColumn }}
             </th>
           </ng-container>
@@ -105,8 +98,8 @@
             <ng-container *ngSwitchCase="TYPE_BUTTON">
               <td mat-cell *matCellDef="let element" class="td-button">
                 <button [disabled]="getColumnValue(element, item) == 1 || getColumnValue(element, item) == true"
-                  mat-raised-button color="primary"
-                  (click)="onButtonClick($event, element)">{{ item.buttonLabel }}</button>
+                  mat-raised-button color="primary" (click)="onButtonClick($event, element)">{{ item.buttonLabel
+                  }}</button>
                 <button *ngIf="item.config && item.isIcon"
                   [disabled]="getColumnValue(element, item) == 1 || getColumnValue(element, item) == true"
                   mat-icon-button color="primary" [attr.aria-label]="item.buttonLabel"
@@ -146,9 +139,8 @@
             </ng-container>
 
             <ng-container *ngSwitchDefault>
-              <td mat-cell *matCellDef="let element"> <span
-                  *ngIf="item.mask">{{ getColumnValue(element, item) | mask: item.mask }}</span><span
-                  *ngIf="!item.mask">{{ getColumnValue(element, item) }}</span></td>
+              <td mat-cell *matCellDef="let element"> <span *ngIf="item.mask">{{ getColumnValue(element, item) | mask:
+                  item.mask }}</span><span *ngIf="!item.mask">{{ getColumnValue(element, item) }}</span></td>
             </ng-container>
 
 
@@ -162,10 +154,10 @@
 
       </table>
 
-      <mat-paginator [ngStyle]="{'display': isPaginated ? 'block' : 'none'}" [hidePageSize]="hidePageSize"
+      <!-- <mat-paginator [ngStyle]="{'display': isPaginated ? 'block' : 'none'}" [hidePageSize]="hidePageSize"
         class="mat-paginator-sticky" [length]="length" [pageSize]="pageSize" [pageIndex]="pageIndex"
         [pageSizeOptions]="pageSizeOptions"></mat-paginator>
-
+ -->
 
     </div>
   </span>
@@ -174,6 +166,10 @@
     <span style="color: black" fxLayout="row" class="message">
       <mat-icon class="mr-8">cancel_presentation</mat-icon>
       <span>NENHUM REGISTRO ENCONTRADO</span>
+
+      <ng-template #loading>
+        <app-loader></app-loader>
+      </ng-template>
     </span>
   </div>
 </ng-container>

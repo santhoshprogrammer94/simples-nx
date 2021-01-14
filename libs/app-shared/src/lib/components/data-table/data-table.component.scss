@@ -53,13 +53,13 @@ input[type=number] {
     }
 }
 
-.table-container {
-    height: 496px;
-    overflow: auto;
-    border-collapse: collapse;
-    border-radius: 0.5em;
-    background-color: white;
-  }
+// .table-container {
+//     height: 496px;
+//     overflow: auto;
+//     border-collapse: collapse;
+//     border-radius: 0.5em;
+//     background-color: white;
+//   }
 
 table {
     width: 100%;
@@ -98,8 +98,7 @@ table {
 .no-data {
     background-color: white;
     border-collapse: collapse;
-    border-radius: 0.5em;
-    height: 496px;
+    // height: 496px;
 
     // height: 68.6vh;
 }
@@ -151,4 +150,34 @@ mat-icon {
 
 .mat-row:hover {
     background-color:rgb(226, 226, 226);
+  }
+
+  :host {
+    display: block;
+    height: 100%;
+  
+    &:after {
+      right: 0;
+    }
+  }
+  
+  .content {
+    overflow-y: visible;
+  
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .centralizado {
+    text-align: center;
+  }
+  
+  .adireita {
+    text-align: right;
+  }
+  
+  .aesquerda {
+    text-align: left;
   }
