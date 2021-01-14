@@ -1,5 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
-import { Crud, CrudController } from '@nestjsx/crud';
+import { Controller, Get, Query } from '@nestjs/common';
+import {
+  Crud,
+  CrudController,
+  CrudRequest,
+  Override,
+  ParsedRequest,
+} from '@nestjsx/crud';
+import { Cargo } from '@simples/shared/interfaces';
 
 import { CargosEntity } from './cargos.entity';
 import { CargosService } from './cargos.service';
@@ -10,7 +17,7 @@ import { CargosService } from './cargos.service';
   },
 
   query: {
-    limit: 20,
+    // limit: 20,
     cache: 1000,
     maxLimit: 1000,
     alwaysPaginate: true,
@@ -26,8 +33,29 @@ import { CargosService } from './cargos.service';
 })
 @Controller('cargos')
 export class CargosController implements CrudController<CargosEntity> {
-  constructor(public service: CargosService) {}
+  
+  constructor(public service: CargosService) {
+    console.log('contructor CargosController');
+  }
 
+  get base(): CrudController<Cargo> {
+    return this;
+  }
+
+  @Override()
+  getMany(
+    @ParsedRequest() req: CrudRequest,
+    @Query() query: { search: string, searchBy: string },
+  ) {
+    const { search, searchBy } = query;
+    req.parsed.offset = req.parsed.limit * req.parsed.offset;
+
+    // if (search) {
+    //   req.parsed.search.$and = parseSearch(search, searchBy);
+    // }
+    return this.base.getManyBase(req);
+  }
+  
   @Get('hello')
   getData(): unknown {
     return this.service.getData();

@@ -23,10 +23,11 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   operation = 'index';
   params: any;
   localParams = '';
-
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
+
   // @ViewChild(ToolbarCrudSimplesComponent)
   // tbCrud: ToolbarCrudSimplesComponent;
   // @ViewChild(ToolbarInteracoesComponent)
@@ -69,15 +70,30 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   //   this.refresh.emit(this.params);
   // }
 
+  ngAfterViewInit() {
+    // this.appStoreFacade.setTitle(this.titulo);
+    if (this.params.page) {
+      this.paginator.pageIndex = Number(this.params.offset);
+    }
+
+    if (this.params.limit) {
+      this.paginator.pageSize = Number(this.params.limit);
+    }
+    this.ngDoCheck();
+  }
+
   initParams() {
     this.params = JSON.parse(localStorage.getItem(this.localParams));
-
+    // https://bluapp.1sat.com.br/api/regions?searchBy=description&offset=0&limit=30&orderBy=&orderType=
+    // https://bluapp.1sat.com.br/api/regions?searchBy=description&offset=2&limit=10&orderBy=id&orderType=asc&sort=id,ASC
     if (!this.params) {
       this.params = {};
-      this.params.page = 0;
+      this.params.offset = 0;
       this.params.limit = 10;
     }
 
+    console.log('PARAMS initParams', this.params);
+   
     this.activeRoute.queryParams.subscribe((params: any) => {
       this.params = { ...this.params, ...params };
     });
@@ -91,11 +107,11 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
 
     if (!this.params) {
       this.params = {};
-      this.params.page = 0;
+      this.params.offset = 0;
       this.params.limit = 10;
     } else {
       if (this.paginator) {
-        this.params.page = this.paginator.pageIndex;
+        this.params.offset = this.paginator.pageIndex;
         this.params.limit = this.paginator.pageSize;
       } else {
         console.log('sem paginator');
@@ -108,7 +124,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
 
   onPaginate() {
     // this.setParams();
-    this.paginator.pageIndex = Number(this.params.page);
+    this.paginator.pageIndex = Number(this.params.offset);
     this.paginator.pageSize = Number(this.params.limit);
   }
 
@@ -116,7 +132,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     this.setParams();
     console.log('onPaginateAPI :', this.params)
     if (this.paginator) {
-      this.paginator.pageIndex = this.params.page;
+      this.paginator.pageIndex = this.params.offset;
       this.paginator.pageSize = this.params.limit;
     } else {
     }

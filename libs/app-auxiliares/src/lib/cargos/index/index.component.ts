@@ -46,6 +46,18 @@ export class IndexComponent
   ) {
     super(injector, env);
 
+    this.localParams = 'cargos';
+
+    this.params = JSON.parse(localStorage.getItem(this.localParams));
+
+    if (this.params) {
+      localStorage.setItem(this.localParams, JSON.stringify(this.params));
+    }
+
+    if (!this.params) {
+      this.initParams();
+    }
+    
     if (this.isDev) {
       console.log('constructor', 'IndexComponent', this.params);
     }
@@ -67,9 +79,10 @@ export class IndexComponent
   }
 
   ngAfterViewInit() {
-    // super.ngAfterViewInit();
+    super.ngAfterViewInit();
     if (this.isDev) {
       console.log('ngAfterViewInit', 'IndexComponent');
+      console.log('paginator', this.paginator);
     }
 
     this.dataSource.paginator = this.paginator;
@@ -143,6 +156,10 @@ export class IndexComponent
 
   onPaginateAPI() {
     super.onPaginateAPI();
+    
+    this.dataService.clearCache();
+    
     this.onRefresh();
+    this.ngDoCheck();
   }
 }

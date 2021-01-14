@@ -59,6 +59,7 @@ const entityMetadata: EntityMetadataMap = {
   // },
 
   Cargos: {
+
     additionalCollectionState: {
       count: null,
       page: null,
