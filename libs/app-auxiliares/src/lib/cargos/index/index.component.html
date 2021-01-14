@@ -10,7 +10,7 @@
   <div class="content main-container" #scrollContainer>
 
       <app-data-table fxFlex [data]="data$ | async" [config]="configuration" [isPaginated]="true" [isUpdated]="true"
-        [isDeleted]="false">
+        [isDeleted]="false" (refresh)="onRefresh($event)" (view)="onDblClick($event)" (doubleClick)="onDblClick($event)">
       </app-data-table>
 
   </div>

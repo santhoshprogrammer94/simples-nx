@@ -17,13 +17,13 @@ input[type=number] {
     border-radius: 0.5em;
 }
 
-.container {
-    max-height: calc(100vh - 65px); //120px
-    overflow: auto;
-    border-collapse: collapse;
-    border-radius: 0.5em;
+// .container {
+//     max-height: calc(100vh - 65px); //120px
+//     overflow: auto;
+//     border-collapse: collapse;
+//     border-radius: 0.5em;
 
-}
+// }
 
 .scroll-x {
     width: 100%;
@@ -96,8 +96,8 @@ table {
 }
 
 .no-data {
-    background-color: white;
-    border-collapse: collapse;
+    // background-color: white;
+    // border-collapse: collapse;
     // height: 496px;
 
     // height: 68.6vh;

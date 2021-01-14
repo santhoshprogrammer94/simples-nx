@@ -21,5 +21,6 @@ export class Column {
     buttonLabel?: string;
     iconName?: string;
     isIcon?: boolean;
+    disabled?: boolean;
     displayedOnMobile?: boolean = true;
 }

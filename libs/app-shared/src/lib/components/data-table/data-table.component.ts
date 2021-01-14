@@ -64,6 +64,7 @@ export class DataTableComponent implements OnInit, OnChanges, OnDestroy {
   @Output() changeChecked = new EventEmitter();
   @Output() directClick = new EventEmitter();
   @Output() buttonClick = new EventEmitter();
+  @Output() doubleClick = new EventEmitter();
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -159,8 +160,8 @@ export class DataTableComponent implements OnInit, OnChanges, OnDestroy {
           const params: any = {
             orderBy: this.sort.active,
             orderType: this.sort.direction,
-            offset: this.paginator.pageIndex,
-            limit: this.paginator.pageSize,
+            // offset: this.paginator.pageIndex,
+            // limit: this.paginator.pageSize,
           };
 
           const sort = this.sort.direction
@@ -318,6 +319,11 @@ export class DataTableComponent implements OnInit, OnChanges, OnDestroy {
     event.stopPropagation();
     this.buttonClick.emit(item);
   }
+
+  onDoubleClick(item) {
+    this.doubleClick.emit(item);
+  }
+
 
   selectRow(row) {
     this.directClick.emit(row);

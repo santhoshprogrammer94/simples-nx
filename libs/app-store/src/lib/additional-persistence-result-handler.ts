@@ -9,12 +9,14 @@ export class AdditionalPersistenceResultHandler extends DefaultPersistenceResult
     return function (data: any) {
       const action = actionHandler.call(this, data);
 
+      console.log('voltei', data);
+
       if (action && data) {
         (action as any).payload.count = data.count;
         (action as any).payload.page = data.page;
         (action as any).payload.pageCount = data.pageCount;
         (action as any).payload.total = data.total;
-        (action as any).payload.data = data.data;
+        (action as any).payload.data = data.data || data;
       } else {
         console.log('não contem data 2');
       }

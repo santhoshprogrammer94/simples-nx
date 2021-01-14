@@ -131,9 +131,9 @@ export class IndexComponent
         console.log('operation', this.operation, 'dados', result);
       }
 
-      // if (!result.payload) {
-      //   return;
-      // }
+      if (!result.payload) {
+        return;
+      }
 
       if (result?.operation === 'new') {
         this.dataService.add(result.payload);
