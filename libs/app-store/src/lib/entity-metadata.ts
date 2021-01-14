@@ -60,13 +60,11 @@ const entityMetadata: EntityMetadataMap = {
 
   Cargos: {
     additionalCollectionState: {
+      count: null,
+      page: null,
+      pageCount: null,
+      total: null,
       foo: 'teste 12',
-      // pageInfo: {
-      //   count: null,
-      //   page: null,
-      //   pageCount: null,
-      //   total: null
-      // }
     },
   },
 };

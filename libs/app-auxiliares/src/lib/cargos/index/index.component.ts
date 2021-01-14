@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  Injector,
-  OnInit,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Inject, Injector, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { IndexDlgApiComponent } from '@simples/app-shared';
 import { Cargo } from '@simples/shared/interfaces';
@@ -30,6 +23,10 @@ export class IndexComponent
 
   data$: Observable<Cargo[]>;
 
+  selectorsss$: any;
+
+  $loading: Observable<boolean>;
+
   displayedColumns: string[] = [
     'id',
     // 'created_at',
@@ -50,10 +47,16 @@ export class IndexComponent
     super(injector, env);
 
     if (this.isDev) {
-      console.log('constructor', 'IndexComponent');
+      console.log('constructor', 'IndexComponent', this.params);
     }
 
     this.data$ = this.dataService.filteredEntities$;
+
+    this.dataService.loading$.subscribe((data) => {
+      console.log('loading', data);
+    });
+
+    this.selectorsss$ = this.dataService.selectors$;
   }
 
   ngOnInit() {
@@ -71,18 +74,18 @@ export class IndexComponent
 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
-
   }
 
   onRefresh(params?: any) {
     if (this.isDev) {
-      console.log('onRefresh', 'IndexComponent');
+      console.log('onRefresh', 'IndexComponent', params);
     }
 
-    this.dataService.load().subscribe(data => {
+    this.dataService
+      .getWithQuery(this.params)
+      .subscribe((data) => {
         console.log('dados', data);
-    });
+      });
   }
 
   onDblClick(registro: Cargo) {
@@ -138,5 +141,8 @@ export class IndexComponent
 
   onFilter(param) {}
 
-  onPaginateAPI() {}
+  onPaginateAPI() {
+    super.onPaginateAPI();
+    this.onRefresh();
+  }
 }

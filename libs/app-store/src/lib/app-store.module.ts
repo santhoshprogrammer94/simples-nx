@@ -26,7 +26,7 @@ const RouterStateMinimal = 1;
     EffectsModule.forRoot([HydrationEffects, RouterEffects, SettingsEffects]),
     StoreRouterConnectingModule.forRoot({ routerState: RouterStateMinimal }),
     EntityDataModule.forRoot(entityConfig),
-    // PaginationModule.forRoot(),
+
     environment.production
       ? []
       : StoreDevtoolsModule.instrument({
@@ -37,12 +37,12 @@ const RouterStateMinimal = 1;
   providers: [
     {
       provide: PersistenceResultHandler,
-      useClass: AdditionalPersistenceResultHandler
+      useClass: AdditionalPersistenceResultHandler,
     },
     {
       provide: EntityCollectionReducerMethodsFactory,
-      useClass: AdditionalEntityCollectionReducerMethodsFactory
+      useClass: AdditionalEntityCollectionReducerMethodsFactory,
     },
-  ]
+  ],
 })
 export class AppStoreModule {}

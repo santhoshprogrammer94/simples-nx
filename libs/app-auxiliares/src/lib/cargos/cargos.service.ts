@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
 export class CargosCollectionService extends EntityCollectionServiceBase<
   Cargo
 > {
-  active$: Observable<Cargo>;
+  cargos$: Observable<any>;
 
   constructor(elementsFactory: EntityCollectionServiceElementsFactory) {
     super('Cargos', elementsFactory);
-    this.active$ = this.store.select(fromCargos.selectActive);
+    // this.cargos$ = entityService.selectors$.pageInfo$
   }
 
   // resolve(data: Cargo): Observable<Cargo> {

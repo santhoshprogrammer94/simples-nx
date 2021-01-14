@@ -1,6 +1,7 @@
 import { EntitySelectorsFactory } from '@ngrx/data';
-import { createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Cargo } from '@simples/shared/interfaces';
+import * as fromCargos from '..';
 
 import * as fromRouter from '../router/router.selectors';
 
@@ -9,15 +10,12 @@ export const {
   selectEntityMap,
 } = new EntitySelectorsFactory().create<Cargo>('cargos');
 
-export interface CargosStats {
-  error: any;
-  total: number;
-  resolved: number;
-  data: [],
-  count: number;
-  page: number;
-}
 
+
+export const ownerSelectors = new EntitySelectorsFactory().create<Cargo>('Cargos');
+
+ 
+// export const selectCargoState = (state: State) => state.cargo;
 
 
 // export const selectPackage = createSelector(
@@ -39,4 +37,3 @@ export const selectActive = createSelector(
   selectActiveId,
   (entities, id) => entities[id]
 );
-// export const getCurrentPageDataState = createSelector(getDataState, state => state.keys.map(key => state.data[key]);
