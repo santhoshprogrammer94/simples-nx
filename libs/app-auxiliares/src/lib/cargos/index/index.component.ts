@@ -29,7 +29,6 @@ export class IndexComponent
   localParams: any;
 
   data$: Observable<Cargo[]>;
-  dataSource: Cargo[];
 
   displayedColumns: string[] = [
     'id',
@@ -40,6 +39,8 @@ export class IndexComponent
     // 'is_active',
     'description',
   ];
+
+  dataSource = new MatTableDataSource<Cargo[]>();
 
   constructor(
     private injector: Injector,
@@ -59,6 +60,7 @@ export class IndexComponent
     if (this.isDev) {
       console.log('ngOnInit', 'IndexComponent');
     }
+    this.onRefresh();
   }
 
   ngAfterViewInit() {
@@ -66,7 +68,10 @@ export class IndexComponent
     if (this.isDev) {
       console.log('ngAfterViewInit', 'IndexComponent');
     }
-    this.onRefresh();
+
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
 
   }
 
@@ -74,22 +79,10 @@ export class IndexComponent
     if (this.isDev) {
       console.log('onRefresh', 'IndexComponent');
     }
-    this.dataService.load();
-    if (this.operation !== 'index') {
-      return;
-    }
 
-    this.subscriptions.push(
-      this.data$.subscribe((data: Cargo[]) => {
-        if (data.length <= 0) {
-          return;
-        }
-        if (this.isDev) {
-          console.log('Subscribe', 'IndexComponent', data);
-        }
-        this.unsubsribeOnDestroy;
-      })
-    );
+    this.dataService.load().subscribe(data => {
+        console.log('dados', data);
+    });
   }
 
   onDblClick(registro: Cargo) {

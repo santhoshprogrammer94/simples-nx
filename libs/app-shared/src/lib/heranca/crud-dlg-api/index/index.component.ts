@@ -28,6 +28,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   protected dialog: DialogService;
 
   operation = 'index';
+  params: any;
 
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -66,4 +67,15 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   // }
 
   // onCallDate(data): void {}
+
+  onPaginateAPI() {
+    // this.setParams();
+    if (this.paginator) {
+      this.paginator.pageIndex = this.params.page;
+      this.paginator.pageSize = this.params.limit;
+    } else {
+      
+    }
+  }
+
 }
