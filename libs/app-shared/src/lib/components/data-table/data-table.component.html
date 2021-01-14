@@ -12,22 +12,22 @@
 
           <ng-container *ngIf="item.sorted && item.type !== TYPE_CHECKBOX">
             <th mat-header-cell *matHeaderCellDef [ngStyle]="item.type == TYPE_ACTIONS ? {'width': '40px'} : {}"
-              mat-sort-header cdkDropList cdkDropListLockAxis="x" cdkDropListOrientation="horizontal"
-              (cdkDropListDropped)="dropListDropped($event, i)" cdkDrag (cdkDragStarted)="dragStarted($event, i)">
+              mat-sort-header 
+               >
               {{ item.nameColumn }}
             </th>
           </ng-container>
           <ng-container *ngIf="!item.sorted && item.type !== TYPE_CHECKBOX">
             <th mat-header-cell *matHeaderCellDef [ngStyle]="item.type == TYPE_ACTIONS ? {'text-align': 'right'} : {}"
-              cdkDropList cdkDropListLockAxis="x" cdkDropListOrientation="horizontal"
-              (cdkDropListDropped)="dropListDropped($event, i)" cdkDrag (cdkDragStarted)="dragStarted($event, i)">
+              
+               >
               {{ item.nameColumn }}
             </th>
           </ng-container>
 
           <ng-container [ngSwitch]="item.type">
             <ng-container *ngSwitchCase="TYPE_ACTIONS">
-              <td mat-cell *matCellDef="let element" class="right-align">
+              <td mat-cell *matCellDef="let element" class="">
                 <button mat-icon-button [matMenuTriggerFor]="moreMenu" [disabled]="hideActions"
                   (click)="$event.stopPropagation();"
                   *ngIf="buttons || element.buttons || isViewed || isUpdated || isDeleted">

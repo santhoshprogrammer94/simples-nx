@@ -7,7 +7,7 @@ export class Configs {
       {
         displayedColumn: 'id',
         columnRef: 'id',
-        nameColumn: 'Id',
+        nameColumn: 'Id #',
         type: Column.TYPE_COMMOM,
         sorted: true,
       },
@@ -45,7 +45,7 @@ export class Configs {
         columnRef: 'actions',
         nameColumn: 'Ações',
         type: Column.TYPE_ACTIONS,
-        sorted: true,
+        sorted: false,
       },
     ],
     0
