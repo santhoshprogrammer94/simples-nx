@@ -37,34 +37,36 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
 
-  // @ViewChild(ToolbarCrudSimplesComponent)
-  // tbCrud: ToolbarCrudSimplesComponent;
-  // @ViewChild(ToolbarInteracoesComponent)
-  // tbInteracao: ToolbarInteracoesComponent;
-
-  // dataSource = new MatTableDataSource([]);
-
   constructor(injector: Injector, @Inject('environment') env?: any) {
     super(injector, env);
 
     this.dialog = this.injectorObj.get(DialogService);
     this.activeRoute = this.injectorObj.get(ActivatedRoute);
 
+
+    this.activeRoute.queryParams.subscribe((params: any) => {
+      console.log('ROUTER', '=> => => recriando parametros', this.params);
+
+      this.params = { ...this.params, ...params };
+
+      if (!this.params) {
+        this.params = JSON.parse(localStorage.getItem(this.localParams));
+      }
+    });
+
+
+
     if (!this.isDev) {
     }
   }
 
   ngOnInit(): void {
-    this.params = JSON.parse(localStorage.getItem(this.localParams));
+    // this.params = JSON.parse(localStorage.getItem(this.localParams));
 
-    if (this.params) {
-      localStorage.setItem(this.localParams, JSON.stringify(this.params));
-      console.log('parametros encontrados', this.localParams, this.params);
-    }
-
-    if (!this.params) {
-      this.initParams();
-    }
+    // if (this.params) {
+    //   localStorage.setItem(this.localParams, JSON.stringify(this.params));
+    //   console.log('parametros encontrados', this.localParams, this.params);
+    // }
   }
 
   ngAfterViewInit() {
@@ -79,28 +81,6 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     this.ngDoCheck();
   }
 
-  initParams() {
-    this.params = JSON.parse(localStorage.getItem(this.localParams));
-    // https://bluapp.1sat.com.br/api/regions?searchBy=description&offset=0&limit=30&orderBy=&orderType=
-    // https://bluapp.1sat.com.br/api/regions?searchBy=description&offset=2&limit=10&orderBy=id&orderType=asc&sort=id,ASC
-    if (!this.params) {
-      this.params = {};
-      this.params.offset = 0;
-      this.params.limit = 10;
-      if (this.isDev) {
-        console.log('initParams', '=> => => recriando parametros', this.params);
-      }
-    }
-
-    // console.log('PARAMS initParams', this.params);
-
-    // this.activeRoute.queryParams.subscribe((params: any) => {
-    //   this.params = { ...this.params, ...params };
-    // });
-
-    localStorage.setItem(this.localParams, JSON.stringify(this.params));
-  }
-
   onRefresh(): void {
     if (this.isDev) {
       console.log('onRefresh', 'IndexDlgApiComponent', this.params);
@@ -108,31 +88,34 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   }
 
   setParams() {
-    this.params = JSON.parse(localStorage.getItem(this.localParams));
 
     if (!this.params) {
       this.params = {};
       this.params.offset = 0;
       this.params.limit = 10;
       if (this.isDev) {
-        console.log('setParams', '=> => => recriando parametros', this.params);
-      }      
+        console.log(
+          'setParams initing',
+          '=> => => recriando parametros',
+          this.params
+        );
+      }
     } else {
       if (this.paginator && !this.isInitializating) {
         this.params.offset = this.paginator.pageIndex;
         this.params.limit = this.paginator.pageSize;
       } else {
-        console.log('sem paginator');
+        console.log('setParams', 'sem paginator');
       }
     }
 
-    localStorage.setItem(this.localParams, JSON.stringify(this.params));
     this.setPaginationQueryParameters();
+    localStorage.setItem(this.localParams, JSON.stringify(this.params));
   }
 
   onPaginateAPI() {
     if (this.isDev) {
-      console.log('onPaginateAPI', 'setando parametros', this.params);
+      console.log('onPaginateAPI', 'setando parametros', this.params, this.paginator.pageIndex);
     }
     this.setParams();
 
@@ -146,11 +129,12 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
           this.params
         );
       }
+      console.log('irá mudar');
       this.paginator.pageIndex = this.params.offset;
       this.paginator.pageSize = this.params.limit;
     } else {
-      console.log('sem paginator');
-      console.log('onPaginateAPI :', this.params);
+      console.log('onPaginateAPI', 'sem paginator');
+      // console.log('onPaginateAPI :', this.params);
     }
     this.setPaginationQueryParameters();
   }
@@ -161,8 +145,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
       relativeTo: this.activeRoute,
       queryParams: this.params,
       queryParamsHandling: 'merge',
-      skipLocationChange: false
+      skipLocationChange: false,
     });
   }
-
 }

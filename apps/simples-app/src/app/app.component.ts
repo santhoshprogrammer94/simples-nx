@@ -44,7 +44,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private storeFacade: StoreFacade,
     private navFacade: NavigationFacade,
     private settingsFacade: SettingsFacade,
-    private changeDetectorRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef
   ) {
     this.navigationLoading$ = this.navFacade.selectLoading$;
   }
@@ -52,6 +52,10 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     console.log('ngOnInit AppComponent');
     // this.storeFacade.resetCache();
+  }
+
+  ngAfterViewInit() {
+    this.ngDoCheck();
   }
 
   onChangeLeftSideNav() {
@@ -67,6 +71,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   mouseleave() {
     // console.log('mouse saiu');
+  }
+
+  ngDoCheck(): void {
+    this.cdRef.detectChanges();
   }
 
   ngOnDestroy(): void {
