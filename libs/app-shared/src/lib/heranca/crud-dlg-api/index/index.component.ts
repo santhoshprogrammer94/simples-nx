@@ -43,18 +43,20 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     this.dialog = this.injectorObj.get(DialogService);
     this.activeRoute = this.injectorObj.get(ActivatedRoute);
 
-
     this.activeRoute.queryParams.subscribe((params: any) => {
       console.log('ROUTER', '=> => => recriando parametros', this.params);
 
-      this.params = { ...this.params, ...params };
+      if (params) {
+        this.params = {};
+        this.params = { ...this.params, ...params };
+        // this.params.offset = 2
+      }
 
       if (!this.params) {
+        this.params = {};
         this.params = JSON.parse(localStorage.getItem(this.localParams));
       }
     });
-
-
 
     if (!this.isDev) {
     }
@@ -62,14 +64,13 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     // this.params = JSON.parse(localStorage.getItem(this.localParams));
-
     // if (this.params) {
     //   localStorage.setItem(this.localParams, JSON.stringify(this.params));
     //   console.log('parametros encontrados', this.localParams, this.params);
     // }
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     // this.appStoreFacade.setTitle(this.titulo);
     if (this.params.page) {
       this.paginator.pageIndex = Number(this.params.offset);
@@ -87,21 +88,23 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     }
   }
 
-  setParams() {
+  // initParams(): void {
+  //   this.params = {};
+  //   this.params.offset = 0;
+  //   this.params.limit = 10;
+  //   if (this.isDev) {
+  //     console.log(
+  //       'setParams initing',
+  //       '=> => => criando parametros',
+  //       this.params
+  //     );
+  //   }
+  // }
 
-    if (!this.params) {
-      this.params = {};
-      this.params.offset = 0;
-      this.params.limit = 10;
-      if (this.isDev) {
-        console.log(
-          'setParams initing',
-          '=> => => recriando parametros',
-          this.params
-        );
-      }
-    } else {
+  setParams(): void {
+    if (this.params) {
       if (this.paginator && !this.isInitializating) {
+        console.log('Setinggravando ');
         this.params.offset = this.paginator.pageIndex;
         this.params.limit = this.paginator.pageSize;
       } else {
@@ -113,9 +116,14 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     localStorage.setItem(this.localParams, JSON.stringify(this.params));
   }
 
-  onPaginateAPI() {
+  onPaginateAPI(): void {
     if (this.isDev) {
-      console.log('onPaginateAPI', 'setando parametros', this.params, this.paginator.pageIndex);
+      console.log(
+        'onPaginateAPI',
+        'setando parametros',
+        this.params,
+        this.paginator.pageIndex
+      );
     }
     this.setParams();
 
@@ -139,7 +147,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     this.setPaginationQueryParameters();
   }
 
-  setPaginationQueryParameters() {
+  setPaginationQueryParameters(): void {
     this.router.navigate([], {
       replaceUrl: true,
       relativeTo: this.activeRoute,
