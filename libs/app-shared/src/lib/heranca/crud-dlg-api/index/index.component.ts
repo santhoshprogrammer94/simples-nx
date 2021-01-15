@@ -49,7 +49,6 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
       if (params) {
         this.params = {};
         this.params = { ...this.params, ...params };
-        // this.params.offset = 2
       }
 
       if (!this.params) {
@@ -88,23 +87,16 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     }
   }
 
-  // initParams(): void {
-  //   this.params = {};
-  //   this.params.offset = 0;
-  //   this.params.limit = 10;
-  //   if (this.isDev) {
-  //     console.log(
-  //       'setParams initing',
-  //       '=> => => criando parametros',
-  //       this.params
-  //     );
-  //   }
-  // }
+
 
   setParams(): void {
     if (this.params) {
       if (this.paginator && !this.isInitializating) {
-        console.log('Setinggravando ');
+        this.params = { ...this.params };
+        
+        this.params.offset = 2
+        console.log('Gravando parametros ');
+
         this.params.offset = this.paginator.pageIndex;
         this.params.limit = this.paginator.pageSize;
       } else {
