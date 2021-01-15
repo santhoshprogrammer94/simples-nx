@@ -44,7 +44,6 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     this.activeRoute = this.injectorObj.get(ActivatedRoute);
 
     this.activeRoute.queryParams.subscribe((params: any) => {
-      console.log('ROUTER', '=> => => recriando parametros', this.params);
 
       if (params) {
         this.params = {};
@@ -78,13 +77,13 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     if (this.params.limit) {
       this.paginator.pageSize = Number(this.params.limit);
     }
-    this.ngDoCheck();
+    // this.ngDoCheck();
   }
 
   onRefresh(): void {
-    if (this.isDev) {
-      console.log('onRefresh', 'IndexDlgApiComponent', this.params);
-    }
+    // if (this.isDev) {
+    //   console.log('onRefresh', 'IndexDlgApiComponent', this.params);
+    // }
   }
 
 
@@ -95,12 +94,12 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
         this.params = { ...this.params };
         
         this.params.offset = 2
-        console.log('Gravando parametros ');
+        // console.log('Gravando parametros ');
 
         this.params.offset = this.paginator.pageIndex;
         this.params.limit = this.paginator.pageSize;
       } else {
-        console.log('setParams', 'sem paginator');
+        console.log('!!!! setParams', 'sem paginator');
       }
     }
 
@@ -109,32 +108,17 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   }
 
   onPaginateAPI(): void {
-    if (this.isDev) {
-      console.log(
-        'onPaginateAPI',
-        'setando parametros',
-        this.params,
-        this.paginator.pageIndex
-      );
-    }
+
     this.setParams();
 
     this.onRefresh();
 
     if (this.paginator) {
-      if (this.isDev) {
-        console.log(
-          'onPaginateAPI',
-          'setando posição do paginator',
-          this.params
-        );
-      }
-      console.log('irá mudar');
+
       this.paginator.pageIndex = this.params.offset;
       this.paginator.pageSize = this.params.limit;
     } else {
       console.log('onPaginateAPI', 'sem paginator');
-      // console.log('onPaginateAPI :', this.params);
     }
     this.setPaginationQueryParameters();
   }
