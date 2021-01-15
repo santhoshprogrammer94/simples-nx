@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Injector, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  Injector,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -23,9 +31,10 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   operation = 'index';
   params: any;
   localParams = '';
-  
+  isInitializating = true;
+
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
 
   // @ViewChild(ToolbarCrudSimplesComponent)
@@ -45,30 +54,18 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     }
   }
 
-  // ngOnInit(): void {
-  //   this.
-  // }
+  ngOnInit(): void {
+    this.params = JSON.parse(localStorage.getItem(this.localParams));
 
-  // onPagamentoForm(data): void {
-  //   if (this.isDev) {
-  //   }
-  // }
+    if (this.params) {
+      localStorage.setItem(this.localParams, JSON.stringify(this.params));
+      console.log('parametros encontrados', this.localParams, this.params);
+    }
 
-  // onCallNewForm(data): void {
-  //   if (this.isDev) {
-  //   }
-  // }
-
-  // onCallDate(data): void {}
-
-  // onRefresh(params?) {
-  //   if (params) {
-  //     this.params = params;
-  //   } else {
-  //   }
-  //   this.hasData = false;
-  //   this.refresh.emit(this.params);
-  // }
+    if (!this.params) {
+      this.initParams();
+    }
+  }
 
   ngAfterViewInit() {
     // this.appStoreFacade.setTitle(this.titulo);
@@ -90,27 +87,38 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
       this.params = {};
       this.params.offset = 0;
       this.params.limit = 10;
+      if (this.isDev) {
+        console.log('initParams', '=> => => recriando parametros', this.params);
+      }
     }
 
-    console.log('PARAMS initParams', this.params);
-   
-    this.activeRoute.queryParams.subscribe((params: any) => {
-      this.params = { ...this.params, ...params };
-    });
+    // console.log('PARAMS initParams', this.params);
+
+    // this.activeRoute.queryParams.subscribe((params: any) => {
+    //   this.params = { ...this.params, ...params };
+    // });
 
     localStorage.setItem(this.localParams, JSON.stringify(this.params));
   }
 
+  onRefresh(): void {
+    if (this.isDev) {
+      console.log('onRefresh', 'IndexDlgApiComponent', this.params);
+    }
+  }
+
   setParams() {
     this.params = JSON.parse(localStorage.getItem(this.localParams));
-    console.log(!this.params);
 
     if (!this.params) {
       this.params = {};
       this.params.offset = 0;
       this.params.limit = 10;
+      if (this.isDev) {
+        console.log('setParams', '=> => => recriando parametros', this.params);
+      }      
     } else {
-      if (this.paginator) {
+      if (this.paginator && !this.isInitializating) {
         this.params.offset = this.paginator.pageIndex;
         this.params.limit = this.paginator.pageSize;
       } else {
@@ -119,25 +127,42 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     }
 
     localStorage.setItem(this.localParams, JSON.stringify(this.params));
-    // this.setPaginationQueryParameters();
-  }
-
-  onPaginate() {
-    // this.setParams();
-    this.paginator.pageIndex = Number(this.params.offset);
-    this.paginator.pageSize = Number(this.params.limit);
+    this.setPaginationQueryParameters();
   }
 
   onPaginateAPI() {
+    if (this.isDev) {
+      console.log('onPaginateAPI', 'setando parametros', this.params);
+    }
     this.setParams();
-    console.log('onPaginateAPI :', this.params)
+
+    this.onRefresh();
+
     if (this.paginator) {
+      if (this.isDev) {
+        console.log(
+          'onPaginateAPI',
+          'setando posição do paginator',
+          this.params
+        );
+      }
       this.paginator.pageIndex = this.params.offset;
       this.paginator.pageSize = this.params.limit;
     } else {
+      console.log('sem paginator');
+      console.log('onPaginateAPI :', this.params);
     }
-    // if (!this.isInitializating) {
-    //   this.onRefresh();
-    // }
+    this.setPaginationQueryParameters();
   }
+
+  setPaginationQueryParameters() {
+    this.router.navigate([], {
+      replaceUrl: true,
+      relativeTo: this.activeRoute,
+      queryParams: this.params,
+      queryParamsHandling: 'merge',
+      skipLocationChange: false
+    });
+  }
+
 }

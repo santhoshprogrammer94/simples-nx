@@ -40,8 +40,8 @@ export class AppCoreModule {
     // console.log(0, 'Setando API');
     // this.apiUrlService.getMyConfig();
 
-    console.log('Dev', !env.production ? 1 : 0, !env.production);
-    console.log(3, 'apiSIG =>', env.apiSIG);
+    console.log('isDev', !env.production);
+    // console.log(3, 'Check domain name', env.domain);
 
     if (parentModule) {
       throw new Error(

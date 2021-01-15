@@ -13,6 +13,6 @@ export class StoreFacade {
   constructor(private store$: Store) {}
 
   resetCache() {
-    console.log('reseting');
+    // console.log('reseting');
     this.store$.dispatch(reset());  }
 }

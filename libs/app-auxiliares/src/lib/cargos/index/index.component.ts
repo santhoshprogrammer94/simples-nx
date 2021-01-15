@@ -1,5 +1,4 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, Inject, Injector, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { IndexDlgApiComponent } from '@simples/app-shared';
 import { Cargo } from '@simples/shared/interfaces';
 import { Observable } from 'rxjs';
@@ -19,14 +18,12 @@ export class IndexComponent
   implements OnInit, AfterViewInit {
   titulo = 'Cargos';
   selectedId = 0;
+  localParams = 'cargos';
+  configuration = new Configs().configuration;
 
-  localParams: any;
-
-  data$: Observable<Cargo[]>;
-
-  selectorsss$: any;
-
-  $loading: Observable<boolean>;
+  selectors$ = this.dataService.selectors$;
+  loading$: Observable<boolean>;
+  data$: Observable<Cargo[]> = this.dataService.filteredEntities$;
 
   displayedColumns: string[] = [
     'id',
@@ -38,67 +35,33 @@ export class IndexComponent
     'description',
   ];
 
-  dataSource = new MatTableDataSource<Cargo[]>();
-  configuration = new Configs().configuration;
-
   constructor(
     private injector: Injector,
     @Inject('env') public env,
     private dataService: CargosCollectionService
   ) {
     super(injector, env);
-
-    this.localParams = 'cargos';
-
-    this.params = JSON.parse(localStorage.getItem(this.localParams));
-
-    if (this.params) {
-      localStorage.setItem(this.localParams, JSON.stringify(this.params));
-    }
-
-    if (!this.params) {
-      this.initParams();
-    }
-
-    if (this.isDev) {
-      console.log('constructor', 'IndexComponent', this.params);
-    }
-
-    this.data$ = this.dataService.filteredEntities$;
-
-    this.dataService.loading$.subscribe((data) => {
-      console.log('loading', data);
-    });
-
-    this.selectorsss$ = this.dataService.selectors$;
+    // localStorage.removeItem(this.localParams);
   }
 
   ngOnInit() {
-    if (this.isDev) {
-      console.log('ngOnInit', 'IndexComponent');
-    }
-    this.onRefresh();
+    super.ngOnInit();
   }
 
   ngAfterViewInit() {
     super.ngAfterViewInit();
-    if (this.isDev) {
-      console.log('ngAfterViewInit', 'IndexComponent');
-      console.log('paginator', this.paginator);
-    }
-
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.onPaginateAPI();
+    this.isInitializating = false;
   }
 
   onRefresh(params?: any) {
-    if (this.isDev) {
-      console.log('onRefresh', 'IndexComponent', this.params);
-    }
+    super.onRefresh();
+    this.dataService.getWithQuery(this.params);
+  }
 
-    this.dataService.getWithQuery(this.params).subscribe((data) => {
-      console.log('dados', data);
-    });
+  onPaginateAPI() {
+    this.dataService.clearCache();
+    super.onPaginateAPI();
   }
 
   onDblClick(registro: Cargo) {
@@ -146,20 +109,5 @@ export class IndexComponent
 
       this.operation = 'index';
     });
-  }
-
-  onClickSearch() {}
-
-  onCancelSearch() {}
-
-  onFilter(param) {}
-
-  onPaginateAPI() {
-    super.onPaginateAPI();
-
-    this.dataService.clearCache();
-
-    this.onRefresh();
-    this.ngDoCheck();
   }
 }

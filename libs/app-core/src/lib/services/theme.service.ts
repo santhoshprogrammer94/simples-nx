@@ -18,7 +18,7 @@ export class ThemeService {
 
   setTheme(themeToSet) {
 
-    console.log('Setando o theme', themeToSet);
+    // console.log('Setando o theme', themeToSet);
     this.styleManager.setStyle(
       'theme',
       `./assets/material-styles/${themeToSet}.css`

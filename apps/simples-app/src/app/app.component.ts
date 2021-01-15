@@ -51,7 +51,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log('ngOnInit AppComponent');
-    this.storeFacade.resetCache();
+    // this.storeFacade.resetCache();
   }
 
   onChangeLeftSideNav() {
