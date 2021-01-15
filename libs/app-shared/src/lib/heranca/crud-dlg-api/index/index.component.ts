@@ -44,17 +44,13 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     this.activeRoute = this.injectorObj.get(ActivatedRoute);
 
     this.activeRoute.queryParams.subscribe((params: any) => {
-
       if (params) {
         this.params = {};
         this.params = { ...this.params, ...params };
       }
-
-      if (!this.params) {
-        this.params = {};
-        this.params = JSON.parse(localStorage.getItem(this.localParams));
-      }
     });
+
+
 
     if (!this.isDev) {
     }
@@ -66,6 +62,24 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     //   localStorage.setItem(this.localParams, JSON.stringify(this.params));
     //   console.log('parametros encontrados', this.localParams, this.params);
     // }
+    if (Object.keys(this.params).length == 0) {
+      this.params = {};
+      this.params = JSON.parse(localStorage.getItem(this.localParams));
+      console.log('Recriando via LocalStorage', '[', this.localParams, ']',  this.params);
+      
+    } else {
+      console.log('params encontrados', this.params);
+    }
+
+    if (!this.params) {
+      console.log('continua null');
+      this.params = {};
+      this.params.offset = 0;
+      this.params.limit = 10;      
+    }    
+    // this.setPaginationQueryParameters();
+
+
   }
 
   ngAfterViewInit(): void {
@@ -86,14 +100,12 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     // }
   }
 
-
-
   setParams(): void {
     if (this.params) {
       if (this.paginator && !this.isInitializating) {
         this.params = { ...this.params };
-        
-        this.params.offset = 2
+
+        this.params.offset = 2;
         // console.log('Gravando parametros ');
 
         this.params.offset = this.paginator.pageIndex;
@@ -103,18 +115,16 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
       }
     }
 
-    this.setPaginationQueryParameters();
     localStorage.setItem(this.localParams, JSON.stringify(this.params));
+    this.setPaginationQueryParameters();
   }
 
   onPaginateAPI(): void {
-
     this.setParams();
 
     this.onRefresh();
 
     if (this.paginator) {
-
       this.paginator.pageIndex = this.params.offset;
       this.paginator.pageSize = this.params.limit;
     } else {
@@ -124,6 +134,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   }
 
   setPaginationQueryParameters(): void {
+    console.log('***** setando', this.params);
     this.router.navigate([], {
       replaceUrl: true,
       relativeTo: this.activeRoute,
