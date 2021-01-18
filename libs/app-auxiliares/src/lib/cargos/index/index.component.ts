@@ -1,4 +1,11 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, Inject, Injector, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Injector,
+  OnInit,
+} from '@angular/core';
 import { IndexDlgApiComponent } from '@simples/app-shared';
 import { Cargo } from '@simples/shared/interfaces';
 import { Observable } from 'rxjs';
@@ -41,7 +48,7 @@ export class IndexComponent
     private dataService: CargosCollectionService
   ) {
     super(injector, env);
-    // localStorage.removeItem(this.localParams);
+    localStorage.removeItem(this.localParams);
   }
 
   ngOnInit() {
@@ -76,27 +83,16 @@ export class IndexComponent
   }
 
   onCallForm(registro?: Cargo): void {
-    const dialogRef = this.dialog.open(FormComponent, {
-      closeButton: false,
-      enableClose: false,
-      draggable: true,
-      height: '240',
-      backdrop: true,
-      data: {
-        id: this.selectedId,
-        payload: registro,
-        operation: this.operation,
-      },
-    });
+    this.dlgConfig.data = {
+      id: this.selectedId,
+      payload: registro,
+      operation: this.operation,
+    };
+
+    const dialogRef = this.dialog.open(FormComponent, this.dlgConfig);
 
     dialogRef.afterClosed$.subscribe((result) => {
-      if (this.isDev) {
-        console.log('operation', this.operation, 'dados', result);
-      }
-
-      if (!result.payload) {
-        return;
-      }
+      if (!result) return;
 
       if (result?.operation === 'new') {
         this.dataService.add(result.payload);

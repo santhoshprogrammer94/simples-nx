@@ -33,6 +33,16 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   localParams = '';
   isInitializating = true;
 
+  dlgConfig = {
+    closeButton: false,
+    enableClose: false,
+    draggable: true,
+    height: '240',
+    width: '420px',
+    backdrop: true,
+    data: null,
+  };
+
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
@@ -50,8 +60,6 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
       }
     });
 
-
-
     if (!this.isDev) {
     }
   }
@@ -65,8 +73,13 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     if (Object.keys(this.params).length == 0) {
       this.params = {};
       this.params = JSON.parse(localStorage.getItem(this.localParams));
-      console.log('Recriando via LocalStorage', '[', this.localParams, ']',  this.params);
-      
+      console.log(
+        'Recriando via LocalStorage',
+        '[',
+        this.localParams,
+        ']',
+        this.params
+      );
     } else {
       console.log('params encontrados', this.params);
     }
@@ -75,11 +88,9 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
       console.log('continua null');
       this.params = {};
       this.params.offset = 0;
-      this.params.limit = 10;      
-    }    
+      this.params.limit = 10;
+    }
     // this.setPaginationQueryParameters();
-
-
   }
 
   ngAfterViewInit(): void {

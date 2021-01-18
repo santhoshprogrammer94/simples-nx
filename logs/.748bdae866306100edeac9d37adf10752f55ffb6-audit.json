@@ -1,14 +1,14 @@
 {
-    "keep": {
-        "days": true,
-        "amount": 1
-    },
-    "auditLog": "logs/.748bdae866306100edeac9d37adf10752f55ffb6-audit.json",
-    "files": [
-        {
-            "date": 1610622319231,
-            "name": "logs/exception-2021-01-14.log",
-            "hash": "636da982cee69c338e5fbb9d10b20f29"
-        }
-    ]
+  "keep": {
+    "days": true,
+    "amount": 1
+  },
+  "auditLog": "logs/.748bdae866306100edeac9d37adf10752f55ffb6-audit.json",
+  "files": [
+    {
+      "date": 1610966957119,
+      "name": "logs/exception-2021-01-18.log",
+      "hash": "21f52031e9225e771ba3d66d29bc6253"
+    }
+  ]
 }

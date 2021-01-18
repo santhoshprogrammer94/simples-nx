@@ -2,7 +2,6 @@ $height__main-toolbar: 64px;
 :host {
   display: block;
   height: 100%;
-
   &:after {
     right: 0;
   }
@@ -33,8 +32,11 @@ $height__main-toolbar: 64px;
   padding: 10px;
 }
 
-p { color: blue;}
+p {
+  color: blue;
+}
 
-cdk-overlay-container, .cdk-overlay-pane {
+cdk-overlay-container,
+.cdk-overlay-pane {
   z-index: 9999 !important;
 }
