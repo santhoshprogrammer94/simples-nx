@@ -85,7 +85,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
         this.params
       );
     } else {
-      console.log('params encontrados', this.params);
+      // console.log('params encontrados', this.params);
     }
 
     if (!this.params) {
@@ -128,7 +128,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
         this.params.offset = this.paginator.pageIndex;
         this.params.limit = this.paginator.pageSize;
       } else {
-        console.log('!!!! setParams', 'sem paginator');
+        // console.log('!!!! setParams', 'sem paginator');
       }
     }
 

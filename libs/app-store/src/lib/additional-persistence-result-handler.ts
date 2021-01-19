@@ -1,6 +1,8 @@
+import { Injectable } from '@angular/core';
 import { DefaultPersistenceResultHandler, EntityAction } from '@ngrx/data';
 import { Action } from '@ngrx/store';
 
+@Injectable()
 export class AdditionalPersistenceResultHandler extends DefaultPersistenceResultHandler {
   handleSuccess(originalAction: EntityAction): (data: any) => Action {
     const actionHandler = super.handleSuccess(originalAction);

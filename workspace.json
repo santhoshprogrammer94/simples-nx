@@ -8,7 +8,7 @@
       "prefix": "simples",
       "targets": {
         "build": {
-          "executor": "@angular-devkit/build-angular:browser",
+          "executor": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/apps/simples-app",
             "index": "apps/simples-app/src/index.html",
@@ -33,9 +33,10 @@
             },
             "extractCss": true,
             "scripts": [],
-            "allowedCommonJsDependencies": [
-              "hammerjs"
-            ]
+            "allowedCommonJsDependencies": ["hammerjs"],
+            "customWebpackConfig": {
+              "path": "webpack.config.js"
+            }
           },
           "configurations": {
             "production": {
@@ -68,7 +69,7 @@
           }
         },
         "serve": {
-          "executor": "@angular-devkit/build-angular:dev-server",
+          "executor": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "simples-app:build",
             "proxyConfig": "apps/simples-app/proxy.conf.json"
@@ -93,17 +94,12 @@
               "apps/simples-app/tsconfig.spec.json",
               "apps/simples-app/tsconfig.editor.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/simples-app/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/simples-app/**/*"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/simples-app"
-          ],
+          "outputs": ["coverage/apps/simples-app"],
           "options": {
             "jestConfig": "apps/simples-app/jest.config.js",
             "passWithNoTests": true
@@ -132,13 +128,8 @@
         "lint": {
           "executor": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/simples-app-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/simples-app-e2e/**/*"
-            ]
+            "tsConfig": ["apps/simples-app-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/simples-app-e2e/**/*"]
           }
         }
       }
@@ -151,16 +142,12 @@
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/simples-api",
             "main": "apps/simples-api/src/main.ts",
             "tsConfig": "apps/simples-api/tsconfig.app.json",
-            "assets": [
-              "apps/simples-api/src/assets"
-            ]
+            "assets": ["apps/simples-api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -185,16 +172,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/simples-api/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/simples-api/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/simples-api"
-          ],
+          "outputs": ["coverage/apps/simples-api"],
           "options": {
             "jestConfig": "apps/simples-api/jest.config.js",
             "passWithNoTests": true
@@ -218,16 +201,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api-core/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api-core/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/api-core"
-          ],
+          "outputs": ["coverage/libs/api-core"],
           "options": {
             "jestConfig": "libs/api-core/jest.config.js",
             "passWithNoTests": true
@@ -243,16 +222,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api-database/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api-database/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/api-database"
-          ],
+          "outputs": ["coverage/libs/api-database"],
           "options": {
             "jestConfig": "libs/api-database/jest.config.js",
             "passWithNoTests": true
@@ -268,16 +243,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api-cruds/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api-cruds/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/api-cruds"
-          ],
+          "outputs": ["coverage/libs/api-cruds"],
           "options": {
             "jestConfig": "libs/api-cruds/jest.config.js",
             "passWithNoTests": true
@@ -293,16 +264,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api-pessoas/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api-pessoas/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/api-pessoas"
-          ],
+          "outputs": ["coverage/libs/api-pessoas"],
           "options": {
             "jestConfig": "libs/api-pessoas/jest.config.js",
             "passWithNoTests": true
@@ -318,16 +285,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/shared/interfaces/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/shared/interfaces/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/shared/interfaces"
-          ],
+          "outputs": ["coverage/libs/shared/interfaces"],
           "options": {
             "jestConfig": "libs/shared/interfaces/jest.config.js",
             "passWithNoTests": true
@@ -343,16 +306,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api-shared/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api-shared/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/api-shared"
-          ],
+          "outputs": ["coverage/libs/api-shared"],
           "options": {
             "jestConfig": "libs/api-shared/jest.config.js",
             "passWithNoTests": true
@@ -373,17 +332,12 @@
               "libs/pages/tsconfig.lib.json",
               "libs/pages/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/pages/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/pages/**/*"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/pages"
-          ],
+          "outputs": ["coverage/libs/pages"],
           "options": {
             "jestConfig": "libs/pages/jest.config.js",
             "passWithNoTests": true
@@ -404,17 +358,12 @@
               "libs/app-shared/tsconfig.lib.json",
               "libs/app-shared/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/app-shared/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/app-shared/**/*"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/app-shared"
-          ],
+          "outputs": ["coverage/libs/app-shared"],
           "options": {
             "jestConfig": "libs/app-shared/jest.config.js",
             "passWithNoTests": true
@@ -435,17 +384,12 @@
               "libs/app-store/tsconfig.lib.json",
               "libs/app-store/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/app-store/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/app-store/**/*"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/app-store"
-          ],
+          "outputs": ["coverage/libs/app-store"],
           "options": {
             "jestConfig": "libs/app-store/jest.config.js",
             "passWithNoTests": true
@@ -466,17 +410,12 @@
               "libs/app-pessoas/tsconfig.lib.json",
               "libs/app-pessoas/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/app-pessoas/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/app-pessoas/**/*"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/app-pessoas"
-          ],
+          "outputs": ["coverage/libs/app-pessoas"],
           "options": {
             "jestConfig": "libs/app-pessoas/jest.config.js",
             "passWithNoTests": true
@@ -497,17 +436,12 @@
               "libs/app-cruds/tsconfig.lib.json",
               "libs/app-cruds/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/app-cruds/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/app-cruds/**/*"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/app-cruds"
-          ],
+          "outputs": ["coverage/libs/app-cruds"],
           "options": {
             "jestConfig": "libs/app-cruds/jest.config.js",
             "passWithNoTests": true
@@ -528,17 +462,12 @@
               "libs/app-auxiliares/tsconfig.lib.json",
               "libs/app-auxiliares/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/app-auxiliares/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/app-auxiliares/**/*"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/app-auxiliares"
-          ],
+          "outputs": ["coverage/libs/app-auxiliares"],
           "options": {
             "jestConfig": "libs/app-auxiliares/jest.config.js",
             "passWithNoTests": true
@@ -554,16 +483,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/api-auxiliares/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/api-auxiliares/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/api-auxiliares"
-          ],
+          "outputs": ["coverage/libs/api-auxiliares"],
           "options": {
             "jestConfig": "libs/api-auxiliares/jest.config.js",
             "passWithNoTests": true
@@ -584,17 +509,12 @@
               "libs/app-core/tsconfig.lib.json",
               "libs/app-core/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/app-core/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/app-core/**/*"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/app-core"
-          ],
+          "outputs": ["coverage/libs/app-core"],
           "options": {
             "jestConfig": "libs/app-core/jest.config.js",
             "passWithNoTests": true

@@ -1,11 +1,20 @@
+// @import 'tailwindcss/base';
+// @import 'tailwindcss/components';
+// @import 'tailwindcss/utilities';
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 /* Add application styles & imports to this file! */
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap");
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
 
 body {
   font-family: Roboto, Arial, sans-serif;
@@ -36,28 +45,24 @@ body {
   flex-direction: column;
   // margin-right: 5px;
   overflow: hidden;
-
 }
-.header, .footer {
-
+.header,
+.footer {
   z-index: 99;
 }
 .content {
   flex: 1;
   overflow: hidden;
-  z-index: 9   !important;
+  z-index: 9 !important;
 }
 
 .footer {
-
   z-index: 99;
   border-top: 2px solid #7c7a7a;
   -webkit-box-shadow: 0px -4px 3px rgba(70, 70, 70, 0.45);
   -moz-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.35);
   box-shadow: 0px -4px 3px rgba(70, 70, 70, 0.25);
 }
-
-
 
 .mat-paginator {
   background: transparent !important;
@@ -89,7 +94,6 @@ body {
   .mat-select-value-text {
     color: whitesmoke !important;
   }
-
 }
 
 table {
@@ -108,9 +112,6 @@ table {
 .aesquerda {
   text-align: left;
 }
-
-
-
 
 .sidenav-container {
   height: calc(100%);
@@ -154,7 +155,6 @@ table {
 
   // background-color:rgb(216, 216, 216);
   // margin-left: 12px;
-
 }
 
 .main-container {
@@ -176,7 +176,8 @@ sis-toolbar-crud-simples {
   background-color: red;
 }
 
-.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label:not(.mat-empty):not(.mat-form-field-empty) {
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+  .mat-form-field-label:not(.mat-empty):not(.mat-form-field-empty) {
   // color
   // scale or font-size
   font-size: 18px;
@@ -186,4 +187,3 @@ sis-toolbar-crud-simples {
 .ngneat-dialog-content {
   max-height: unset;
 }
-
