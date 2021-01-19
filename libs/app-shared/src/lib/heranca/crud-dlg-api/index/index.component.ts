@@ -12,6 +12,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService } from '@ngneat/dialog';
+import { ToolbarCrudFooterComponent } from '../../../components/toolbar-crud-footer/toolbar-crud-footer.component';
+import { ToolbarCrudSimplesComponent } from '../../../components/toolbar-crud-simples/toolbar-crud-simples.component';
 
 import { BaseComponent } from '../../inheritance.component';
 
@@ -46,6 +48,8 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
+  @ViewChild(ToolbarCrudSimplesComponent) tbCrud: any;
+  @ViewChild(ToolbarCrudFooterComponent) tbFooter: any;
 
   constructor(injector: Injector, @Inject('environment') env?: any) {
     super(injector, env);
@@ -95,6 +99,8 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
 
   ngAfterViewInit(): void {
     // this.appStoreFacade.setTitle(this.titulo);
+    this.paginator = this.tbFooter.paginator;
+
     if (this.params.page) {
       this.paginator.pageIndex = Number(this.params.offset);
     }
@@ -145,7 +151,6 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   }
 
   setPaginationQueryParameters(): void {
-    console.log('***** setando', this.params);
     this.router.navigate([], {
       replaceUrl: true,
       relativeTo: this.activeRoute,

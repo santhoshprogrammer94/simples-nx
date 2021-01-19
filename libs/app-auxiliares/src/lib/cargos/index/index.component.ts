@@ -48,7 +48,7 @@ export class IndexComponent
     private dataService: CargosCollectionService
   ) {
     super(injector, env);
-    localStorage.removeItem(this.localParams);
+    // localStorage.removeItem(this.localParams);
   }
 
   ngOnInit() {
@@ -56,6 +56,8 @@ export class IndexComponent
   }
 
   ngAfterViewInit() {
+    // console.log('tbFooter', this.tbFooter.paginator);
+    // this.paginator = this.tbFooter.paginator;
     super.ngAfterViewInit();
     this.onPaginateAPI();
     this.isInitializating = false;

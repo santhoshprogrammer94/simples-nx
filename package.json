@@ -83,6 +83,7 @@
     "nestjs-config": "^1.4.7",
     "ng-material-multilevel-menu": "^5.5.3",
     "ngrx-data-pagination": "0.0.12",
+    "ngx-loading": "^8.0.0",
     "ngx-mask": "^11.1.4",
     "ngx-mat-errors": "0.0.5",
     "ngx-mat-select-search": "^3.2.0",
