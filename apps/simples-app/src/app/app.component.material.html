@@ -1,8 +1,4 @@
-<loading></loading>
-
 <mat-sidenav-container fullscreen>
-  <loading></loading>
-
   <mat-sidenav
     #sidenav
     mode="side"
@@ -23,7 +19,6 @@
       <simples-header-mobile (sideNavClosed)="onChangeLeftSideNav()">
       </simples-header-mobile>
     </div>
-
     <mat-progress-bar
       *ngIf="navigationLoading$ | async"
       style="display: flex; justify-content: center; align-items: center"
@@ -31,9 +26,6 @@
       mode="indeterminate"
     >
     </mat-progress-bar>
-
-    <loading></loading>
-
     <main class="container mat-app-background">
       <router-outlet></router-outlet>
     </main>
@@ -43,7 +35,4 @@
       </simples-footer-mobile>
     </div>
   </mat-sidenav-content>
-
-  <loading></loading>
 </mat-sidenav-container>
-<loading></loading>

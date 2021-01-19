@@ -12,9 +12,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService } from '@ngneat/dialog';
+
+import { LoadingService } from '../../../components/loading/loading.service';
 import { ToolbarCrudFooterComponent } from '../../../components/toolbar-crud-footer/toolbar-crud-footer.component';
 import { ToolbarCrudSimplesComponent } from '../../../components/toolbar-crud-simples/toolbar-crud-simples.component';
-
 import { BaseComponent } from '../../inheritance.component';
 
 @Component({
@@ -29,11 +30,15 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   protected router: Router;
   protected activeRoute: ActivatedRoute;
   protected dialog: DialogService;
+  protected loadingService: LoadingService;
 
   operation = 'index';
   params: any;
   localParams = '';
   isInitializating = true;
+
+  direction = 'DESC';
+  active = 'id';
 
   dlgConfig = {
     closeButton: false,
@@ -55,6 +60,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     super(injector, env);
 
     this.dialog = this.injectorObj.get(DialogService);
+    this.loadingService = this.injectorObj.get(LoadingService);
     this.activeRoute = this.injectorObj.get(ActivatedRoute);
 
     this.activeRoute.queryParams.subscribe((params: any) => {
@@ -93,6 +99,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
       this.params = {};
       this.params.offset = 0;
       this.params.limit = 10;
+      this.params.sort = `${this.active},${this.direction}`;
     }
     // this.setPaginationQueryParameters();
   }
@@ -122,7 +129,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
       if (this.paginator && !this.isInitializating) {
         this.params = { ...this.params };
 
-        this.params.offset = 2;
+        // this.params.offset = 2;
         // console.log('Gravando parametros ');
 
         this.params.offset = this.paginator.pageIndex;
@@ -137,6 +144,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
   }
 
   onPaginateAPI(): void {
+    this.loadingService.show();
     this.setParams();
 
     this.onRefresh();
@@ -148,6 +156,24 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
       console.log('onPaginateAPI', 'sem paginator');
     }
     this.setPaginationQueryParameters();
+    this.loadingService.hide();
+  }
+
+  sortData(params) {
+    this.loadingService.show();
+
+    const currentDirection = this.direction;
+
+    this.active = params.active;
+    this.direction = params.direction.toUpperCase();
+
+    this.params = { ...this.params };
+
+    this.params['sort'] = `${this.active},${this.direction}`;
+
+    this.onRefresh();
+    this.setPaginationQueryParameters();
+    this.loadingService.hide();
   }
 
   setPaginationQueryParameters(): void {

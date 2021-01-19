@@ -28,6 +28,7 @@ import {
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { FormInspectorComponent } from './components/form-inspector/form-inspector.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { LoadingComponent } from './components/loading/loading.component';
 import { MediaQueryStatusComponent } from './components/media-query-status/media-query-status.component';
 import { MenuThemeComponent } from './components/menu-theme/menu-theme.component';
 import { FooterMobileComponent } from './components/navigation/footer-mobile/footer-mobile.component';
@@ -119,6 +120,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
     MenuThemeComponent,
 
+    LoadingComponent,
+
     ToolbarCrudSimplesComponent,
     ToolbarCrudDlgComponent,
     ToolbarCrudFooterComponent,
@@ -142,6 +145,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FormDlgApiComponent,
 
     MenuThemeComponent,
+
+    LoadingComponent,
 
     ToolbarCrudSimplesComponent,
     ToolbarCrudDlgComponent,

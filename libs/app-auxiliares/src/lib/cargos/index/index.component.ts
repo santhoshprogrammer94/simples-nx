@@ -48,7 +48,7 @@ export class IndexComponent
     private dataService: CargosCollectionService
   ) {
     super(injector, env);
-    // localStorage.removeItem(this.localParams);
+    localStorage.removeItem(this.localParams);
   }
 
   ngOnInit() {
@@ -71,6 +71,13 @@ export class IndexComponent
   onPaginateAPI() {
     this.dataService.clearCache();
     super.onPaginateAPI();
+  }
+
+  sortData(params) {
+    if (params.direction) {
+      this.dataService.clearCache();
+      super.sortData(params);
+    }
   }
 
   onDblClick(registro: Cargo) {

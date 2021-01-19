@@ -1,4 +1,13 @@
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { DialogService } from '@ngneat/dialog';
 import { Store } from '@ngrx/store';
 import { Option, ThemeService } from '@simples/app-core';
@@ -38,13 +47,6 @@ export class NxComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     console.log('ngOnInit');
-    interval(1000)
-      .pipe(
-        tap((e) => console.log('Decorator', e)),
-        // @ts-ignore  <- If i add this the warning will gone but i dont want to add this every rxjs later.
-        this.unsubsribeOnDestroy
-      )
-      .subscribe();
   }
 
   ngAfterViewInit() {
