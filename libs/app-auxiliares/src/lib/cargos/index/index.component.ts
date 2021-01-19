@@ -73,11 +73,16 @@ export class IndexComponent
     super.onPaginateAPI();
   }
 
-  sortData(params) {
+  onSortAPI(params) {
     if (params.direction) {
       this.dataService.clearCache();
-      super.sortData(params);
+      super.onSortAPI(params);
     }
+  }
+
+  onFilterApi(param) {
+    this.dataService.clearCache();
+    super.onFilterApi(param);
   }
 
   onDblClick(registro: Cargo) {

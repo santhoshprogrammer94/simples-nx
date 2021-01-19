@@ -3,10 +3,11 @@
     <app-toolbar-crud-simples
       [title]="titulo"
       [localParams]="localParams"
-      (refresh)="onRefresh($event)"
       [showAddButton]="true"
       [showMenuButton]="false"
       (add)="onAdd()"
+      (filterAPI)="onFilterApi($event)"
+      (refresh)="onRefresh($event)"
     ></app-toolbar-crud-simples>
   </div>
 
@@ -16,7 +17,7 @@
       #table
       [dataSource]="data"
       matSort
-      (matSortChange)="sortData($event)"
+      (matSortChange)="onSortAPI($event)"
       matSortActive="id"
       matSortDirection="desc"
       class="mat-elevation-z3"

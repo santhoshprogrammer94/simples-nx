@@ -9,7 +9,7 @@ import {
   OnInit,
   Output,
   Renderer2,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { MatMenu } from '@angular/material/menu';
 import { format, parse } from 'date-fns';
@@ -18,7 +18,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 @Component({
   selector: 'app-toolbar-crud-simples',
   templateUrl: './toolbar-crud-simples.component.html',
-  styleUrls: ['./toolbar-crud-simples.component.scss']
+  styleUrls: ['./toolbar-crud-simples.component.scss'],
 })
 export class ToolbarCrudSimplesComponent implements OnInit {
   value = '';
@@ -45,7 +45,6 @@ export class ToolbarCrudSimplesComponent implements OnInit {
   @Input() showFilter: boolean = true;
   @Input() showAddButton: boolean = true;
   @Input() showMenuButton: boolean = true;
-
 
   // VARIAVEIS para SEREM USADOS (nomes corrigidos)
   @Output() add = new EventEmitter();
@@ -108,7 +107,7 @@ export class ToolbarCrudSimplesComponent implements OnInit {
   constructor(
     private _location: Location,
     private cdRef: ChangeDetectorRef,
-    private renderer: Renderer2,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -184,7 +183,10 @@ export class ToolbarCrudSimplesComponent implements OnInit {
           this.applyFilter(this.keyWord);
         }
         setTimeout(() => this.inputSearch.nativeElement.focus(), 0);
-        setTimeout(() => (this.inputSearch.nativeElement.value = this.keyWord), 0);
+        setTimeout(
+          () => (this.inputSearch.nativeElement.value = this.keyWord),
+          0
+        );
       }
       this.searching = true;
     } else {
@@ -195,7 +197,10 @@ export class ToolbarCrudSimplesComponent implements OnInit {
 
   setWordSearchInput() {
     if (this.searching) {
-      setTimeout(() => (this.inputSearch.nativeElement.value = this.keyWord), 0);
+      setTimeout(
+        () => (this.inputSearch.nativeElement.value = this.keyWord),
+        0
+      );
     }
   }
 
@@ -207,6 +212,7 @@ export class ToolbarCrudSimplesComponent implements OnInit {
   }
 
   filterByAPI(filterValue: string) {
+    console.log('toolbar filterByAPI', filterValue);
     this.filterAPI.emit(filterValue);
   }
 

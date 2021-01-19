@@ -6,6 +6,7 @@ import {
   Override,
   ParsedRequest,
 } from '@nestjsx/crud';
+import { parseSearch } from '@simples/api-shared';
 import { Cargo } from '@simples/shared/interfaces';
 
 import { CargosEntity } from './cargos.entity';
@@ -33,7 +34,6 @@ import { CargosService } from './cargos.service';
 })
 @Controller('cargos')
 export class CargosController implements CrudController<CargosEntity> {
-  
   constructor(public service: CargosService) {
     console.log('contructor CargosController');
   }
@@ -45,17 +45,19 @@ export class CargosController implements CrudController<CargosEntity> {
   @Override()
   getMany(
     @ParsedRequest() req: CrudRequest,
-    @Query() query: { search: string, searchBy: string },
+    @Query() query: { search: string; searchBy: string }
   ) {
-    const { search, searchBy } = query;
     req.parsed.offset = req.parsed.limit * req.parsed.offset;
 
-    // if (search) {
-    //   req.parsed.search.$and = parseSearch(search, searchBy);
-    // }
+    const { search, searchBy } = query;
+
+    if (search) {
+      req.parsed.search.$and = parseSearch(search, searchBy);
+    }
+
     return this.base.getManyBase(req);
   }
-  
+
   @Get('hello')
   getData(): unknown {
     return this.service.getData();

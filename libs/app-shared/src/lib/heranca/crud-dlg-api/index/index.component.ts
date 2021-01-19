@@ -39,6 +39,8 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
 
   direction = 'DESC';
   active = 'id';
+  search = '';
+  searchField = 'description';
 
   dlgConfig = {
     closeButton: false,
@@ -159,10 +161,11 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     this.loadingService.hide();
   }
 
-  sortData(params) {
+  onSortAPI(params) {
     this.loadingService.show();
 
     const currentDirection = this.direction;
+    console.log(params);
 
     this.active = params.active;
     this.direction = params.direction.toUpperCase();
@@ -170,6 +173,24 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     this.params = { ...this.params };
 
     this.params['sort'] = `${this.active},${this.direction}`;
+
+    this.onRefresh();
+    this.setPaginationQueryParameters();
+    this.loadingService.hide();
+  }
+
+  onFilterApi(param) {
+    console.log('onFilterApi heraddo', param);
+    // search=carlos&searchBy=customer
+
+    this.loadingService.show();
+
+    const currentDirection = this.direction;
+
+    this.search = param;
+    this.params = { ...this.params };
+    this.params['searchBy'] = `${this.searchField}`;
+    this.params['search'] = `${this.search}`;
 
     this.onRefresh();
     this.setPaginationQueryParameters();
