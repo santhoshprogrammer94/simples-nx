@@ -137,7 +137,8 @@
             "outputPath": "dist/apps/simples-api",
             "main": "apps/simples-api/src/main.ts",
             "tsConfig": "apps/simples-api/tsconfig.app.json",
-            "assets": ["apps/simples-api/src/assets"]
+            "assets": ["apps/simples-api/src/assets"],
+            "showCircularDependencies": false
           },
           "configurations": {
             "production": {
