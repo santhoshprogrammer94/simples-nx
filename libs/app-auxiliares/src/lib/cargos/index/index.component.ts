@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  Injector,
-  OnInit,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Inject, Injector, OnInit } from '@angular/core';
 import { IndexDlgApiComponent } from '@simples/app-shared';
 import { Cargo } from '@simples/shared/interfaces';
 import { Observable } from 'rxjs';
@@ -13,16 +6,13 @@ import { Observable } from 'rxjs';
 import { CargosCollectionService } from '../cargos.service';
 import { FormComponent } from '../form/form.component';
 import { Configs } from './configs';
-
 @Component({
   selector: 'simples-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IndexComponent
-  extends IndexDlgApiComponent
-  implements OnInit, AfterViewInit {
+export class IndexComponent extends IndexDlgApiComponent implements OnInit, AfterViewInit {
   titulo = 'Cargos';
   selectedId = 0;
   localParams = 'cargos';
@@ -42,13 +32,9 @@ export class IndexComponent
     'description',
   ];
 
-  constructor(
-    private injector: Injector,
-    @Inject('env') public env,
-    private dataService: CargosCollectionService
-  ) {
+  constructor(private injector: Injector, @Inject('env') public env, private dataService: CargosCollectionService) {
     super(injector, env);
-    localStorage.removeItem(this.localParams);
+    // localStorage.removeItem(this.localParams);
   }
 
   ngOnInit() {
@@ -56,8 +42,6 @@ export class IndexComponent
   }
 
   ngAfterViewInit() {
-    // console.log('tbFooter', this.tbFooter.paginator);
-    // this.paginator = this.tbFooter.paginator;
     super.ngAfterViewInit();
     this.onPaginateAPI();
     this.isInitializating = false;
@@ -65,24 +49,8 @@ export class IndexComponent
 
   onRefresh(params?: any) {
     super.onRefresh();
+    this.dataService.clearCache();
     this.dataService.getWithQuery(this.params);
-  }
-
-  onPaginateAPI() {
-    this.dataService.clearCache();
-    super.onPaginateAPI();
-  }
-
-  onSortAPI(params) {
-    if (params.direction) {
-      this.dataService.clearCache();
-      super.onSortAPI(params);
-    }
-  }
-
-  onFilterApi(param) {
-    this.dataService.clearCache();
-    super.onFilterApi(param);
   }
 
   onDblClick(registro: Cargo) {
@@ -105,7 +73,7 @@ export class IndexComponent
 
     const dialogRef = this.dialog.open(FormComponent, this.dlgConfig);
 
-    dialogRef.afterClosed$.subscribe((result) => {
+    dialogRef.afterClosed$.subscribe(result => {
       if (!result) return;
 
       if (result?.operation === 'new') {

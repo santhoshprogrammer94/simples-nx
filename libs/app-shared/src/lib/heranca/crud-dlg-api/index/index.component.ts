@@ -85,13 +85,7 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     if (Object.keys(this.params).length == 0) {
       this.params = {};
       this.params = JSON.parse(localStorage.getItem(this.localParams));
-      console.log(
-        'Recriando via LocalStorage',
-        '[',
-        this.localParams,
-        ']',
-        this.params
-      );
+      console.log('Recriando via LocalStorage', '[', this.localParams, ']', this.params);
     } else {
       // console.log('params encontrados', this.params);
     }
@@ -174,8 +168,10 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
 
     this.params['sort'] = `${this.active},${this.direction}`;
 
-    this.onRefresh();
-    this.setPaginationQueryParameters();
+    if (params.direction) {
+      this.onRefresh();
+      this.setPaginationQueryParameters();
+    }
     this.loadingService.hide();
   }
 
