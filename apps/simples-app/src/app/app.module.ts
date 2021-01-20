@@ -1,6 +1,6 @@
 import 'hammerjs';
 
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { APP_BASE_HREF, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,7 +12,6 @@ import { AppStoreModule } from '@simples/app-store';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContainerComponent } from './components/container/container.component';
 
 // import { FooterMobileComponent } from './navigation/footer-mobile/footer-mobile.component';
 // import { HeaderMobileComponent } from './navigation/header-mobile/header-mobile.component';
@@ -23,7 +22,6 @@ import { ContainerComponent } from './components/container/container.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ContainerComponent,
     // HeaderMobileComponent,
     // FooterMobileComponent,
     // SidenavComponent,
@@ -39,6 +37,7 @@ import { ContainerComponent } from './components/container/container.component';
     AppStoreModule,
   ],
   providers: [
+    { provide: APP_BASE_HREF, useValue: '/' },
     { provide: 'environment', useValue: environment },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
