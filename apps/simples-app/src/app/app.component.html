@@ -1,8 +1,6 @@
 <loading></loading>
 
 <mat-sidenav-container fullscreen>
-  <loading></loading>
-
   <mat-sidenav
     #sidenav
     mode="side"
@@ -12,18 +10,15 @@
     (mouseleave)="mouseleave()"
     (menuButtonClick)="onChangeLeftSideNav()"
   >
-    <simples-sidenav
-      (sideNavClosed)="onChangeLeftSideNav()"
-      [menuItens]="appitems"
-    ></simples-sidenav>
+    <simples-sidenav (sideNavClosed)="onChangeLeftSideNav()" [menuItens]="appitems"></simples-sidenav>
   </mat-sidenav>
 
   <mat-sidenav-content fxLayout="column">
     <div class="header">
-      <simples-header-mobile (sideNavClosed)="onChangeLeftSideNav()">
-      </simples-header-mobile>
+      <simples-header-mobile (sideNavClosed)="onChangeLeftSideNav()"> </simples-header-mobile>
     </div>
 
+    <!-- 
     <mat-progress-bar
       *ngIf="navigationLoading$ | async"
       style="display: flex; justify-content: center; align-items: center"
@@ -31,19 +26,14 @@
       mode="indeterminate"
     >
     </mat-progress-bar>
-
-    <loading></loading>
+     -->
 
     <main class="container mat-app-background">
       <router-outlet></router-outlet>
     </main>
 
     <div class="footer">
-      <simples-footer-mobile (sideNavClosed)="onChangeLeftSideNav()">
-      </simples-footer-mobile>
+      <simples-footer-mobile (sideNavClosed)="onChangeLeftSideNav()"> </simples-footer-mobile>
     </div>
   </mat-sidenav-content>
-
-  <loading></loading>
 </mat-sidenav-container>
-<loading></loading>

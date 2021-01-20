@@ -159,7 +159,6 @@ export class IndexDlgApiComponent extends BaseComponent implements OnInit {
     this.loadingService.show();
 
     const currentDirection = this.direction;
-    console.log(params);
 
     this.active = params.active;
     this.direction = params.direction.toUpperCase();
