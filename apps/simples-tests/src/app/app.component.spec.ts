@@ -1,13 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppSharedModule } from '@simples/app-shared';
-
 import { AppComponent } from './app.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, AppSharedModule],
+      imports: [RouterTestingModule],
       declarations: [AppComponent],
     }).compileComponents();
   });
@@ -18,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'simples-app'`, () => {
+  it(`should have as title 'simples-tests'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('simples-app');
+    expect(app.title).toEqual('simples-tests');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to simples-app!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to simples-tests!');
   });
 });

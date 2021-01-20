@@ -80,6 +80,13 @@
     },
     "app-core": {
       "tags": ["scope:core", "type:core"]
+    },
+    "simples-tests": {
+      "tags": []
+    },
+    "simples-tests-e2e": {
+      "tags": [],
+      "implicitDependencies": ["simples-tests"]
     }
   }
 }

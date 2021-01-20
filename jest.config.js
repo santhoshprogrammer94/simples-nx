@@ -17,5 +17,6 @@ module.exports = {
     '<rootDir>/libs/app-auxiliares',
     '<rootDir>/libs/api-auxiliares',
     '<rootDir>/libs/app-core',
+    '<rootDir>/apps/simples-tests',
   ],
 };

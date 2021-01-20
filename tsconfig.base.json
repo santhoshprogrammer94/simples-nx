@@ -36,6 +36,7 @@
       "@simples/app-core": ["libs/app-core/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"],
-  "include": ["**/*.ts", "./libs/*/src/**/*", "./apps/*/src/**/*"]
+  "exclude": ["node_modules", "tmp", "**/*.spec.ts"],
+  "include": ["**/*.ts", "./libs/*/src/**/*", "./apps/*/src/**/*"],
+  "types": ["node", "cypress", "jest"]
 }
