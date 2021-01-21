@@ -40,40 +40,29 @@ import { DialogService, DialogRef } from '@ngneat/dialog';
         box-shadow: 0px -4px 3px rgba(70, 70, 70, 0.25);
       }
 
-      p { color: blue;}
-    `
+      p {
+        color: blue;
+      }
+    `,
   ],
   template: `
-    <div class="wrapper ">
+    <div class="wrapper">
       <div class="header">
-        <mat-toolbar class="mat-elevation-z9" color="primary">
-          <button mat-icon-button>
-            <mat-icon>menu</mat-icon>
-          </button>
-          <h1 class="example-app-name">{{ 'Dialogo Teste' }}</h1>
-        </mat-toolbar>
+        <h1>header</h1>
       </div>
 
       <div class="content">
         <p *ngFor="let item of fakeArray(30)">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+          make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+          sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+          PageMaker including versions of Lorem Ipsum.
         </p>
       </div>
       <div class="footer">
-        <mat-toolbar class="mat-elevation-z4" color="primary">
-          <span class="fill-space"></span>
-          <div class="toolbar-icon">
-            <mat-icon>account_circle</mat-icon>
-          </div>
-        </mat-toolbar>
+        <h2>footer</h2>
       </div>
     </div>
   `,

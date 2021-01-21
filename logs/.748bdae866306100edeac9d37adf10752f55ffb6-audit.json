@@ -6,9 +6,9 @@
   "auditLog": "logs/.748bdae866306100edeac9d37adf10752f55ffb6-audit.json",
   "files": [
     {
-      "date": 1611142839748,
-      "name": "logs/exception-2021-01-20.log",
-      "hash": "326a3fd1f28abd3fcaafbc84364b10aa"
+      "date": 1611250441723,
+      "name": "logs/exception-2021-01-21.log",
+      "hash": "330769037804331484f01760da6a760f"
     }
   ]
 }

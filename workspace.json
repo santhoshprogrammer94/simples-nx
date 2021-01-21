@@ -16,7 +16,15 @@
             "polyfills": "apps/simples-app/src/polyfills.ts",
             "tsConfig": "apps/simples-app/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/simples-app/src/favicon.ico", "apps/simples-app/src/assets"],
+            "assets": [
+              "apps/simples-app/src/favicon.ico",
+              "apps/simples-app/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/@taiga-ui/icons/src",
+                "output": "assets/taiga-ui/icons"
+              }
+            ],
             "styles": ["apps/simples-app/src/styles.scss", "libs/styles/src/index.scss"],
             "stylePreprocessorOptions": {
               "includePaths": ["libs/styles/src/", "libs/styles/src/lib/", "libs/styles/src/lib/"]
@@ -120,6 +128,143 @@
           "options": {
             "tsConfig": ["apps/simples-app-e2e/tsconfig.e2e.json"],
             "exclude": ["**/node_modules/**", "!apps/simples-app-e2e/**/*"]
+          }
+        }
+      }
+    },
+    "simples-tests": {
+      "projectType": "application",
+      "root": "apps/simples-tests",
+      "sourceRoot": "apps/simples-tests/src",
+      "prefix": "simples",
+      "targets": {
+        "build": {
+          "executor": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "outputPath": "dist/apps/simples-tests",
+            "index": "apps/simples-tests/src/index.html",
+            "main": "apps/simples-tests/src/main.ts",
+            "polyfills": "apps/simples-tests/src/polyfills.ts",
+            "tsConfig": "apps/simples-tests/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/simples-tests/src/favicon.ico",
+              "apps/simples-tests/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/@taiga-ui/icons/src",
+                "output": "assets/taiga-ui/icons"
+              }
+            ],
+            "styles": [
+              "apps/simples-tests/src/styles.scss",
+              "node_modules/@taiga-ui/core/styles/taiga-ui-global.less",
+              "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+
+              "node_modules/@taiga-ui/core/styles/theme/variables.less",
+              "node_modules/@taiga-ui/core/styles/theme/wrapper.less"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["libs/styles/src/", "libs/styles/src/lib/", "libs/styles/src/lib/"]
+            },
+            "extractCss": true,
+            "scripts": [],
+            "allowedCommonJsDependencies": ["hammerjs"],
+            "customWebpackConfig": {
+              "path": "webpack.config.js"
+            }
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/simples-tests/src/environments/environment.ts",
+                  "with": "apps/simples-tests/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "browserTarget": "simples-tests:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "simples-tests:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "simples-tests:build"
+          }
+        },
+        "lint": {
+          "executor": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/simples-tests/tsconfig.app.json",
+              "apps/simples-tests/tsconfig.spec.json",
+              "apps/simples-tests/tsconfig.editor.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/simples-tests/**/*"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/simples-tests"],
+          "options": {
+            "jestConfig": "apps/simples-tests/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "simples-tests-e2e": {
+      "root": "apps/simples-tests-e2e",
+      "sourceRoot": "apps/simples-tests-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/simples-tests-e2e/cypress.json",
+            "tsConfig": "apps/simples-tests-e2e/tsconfig.e2e.json",
+            "devServerTarget": "simples-tests:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "simples-tests:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/simples-tests-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/simples-tests-e2e/**/*"]
           }
         }
       }
@@ -488,120 +633,6 @@
           "options": {
             "jestConfig": "libs/app-core/jest.config.js",
             "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "simples-tests": {
-      "projectType": "application",
-      "root": "apps/simples-tests",
-      "sourceRoot": "apps/simples-tests/src",
-      "prefix": "simples",
-      "targets": {
-        "build": {
-          "executor": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/simples-tests",
-            "index": "apps/simples-tests/src/index.html",
-            "main": "apps/simples-tests/src/main.ts",
-            "polyfills": "apps/simples-tests/src/polyfills.ts",
-            "tsConfig": "apps/simples-tests/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/simples-tests/src/favicon.ico", "apps/simples-tests/src/assets"],
-            "styles": ["apps/simples-tests/src/styles.scss"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/simples-tests/src/environments/environment.ts",
-                  "with": "apps/simples-tests/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "executor": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "simples-tests:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "simples-tests:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "executor": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "simples-tests:build"
-          }
-        },
-        "lint": {
-          "executor": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/simples-tests/tsconfig.app.json",
-              "apps/simples-tests/tsconfig.spec.json",
-              "apps/simples-tests/tsconfig.editor.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/simples-tests/**/*"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/simples-tests"],
-          "options": {
-            "jestConfig": "apps/simples-tests/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "simples-tests-e2e": {
-      "root": "apps/simples-tests-e2e",
-      "sourceRoot": "apps/simples-tests-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/simples-tests-e2e/cypress.json",
-            "tsConfig": "apps/simples-tests-e2e/tsconfig.e2e.json",
-            "devServerTarget": "simples-tests:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "simples-tests:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["apps/simples-tests-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/simples-tests-e2e/**/*"]
           }
         }
       }
